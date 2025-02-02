@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Main"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
+   <children>
+      <VBox alignment="CENTER" layoutX="75.0" layoutY="-2.0" prefHeight="400.0" prefWidth="250.0" spacing="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="104.0" text="Main Menu" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono SemiBold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="mainAppointments" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" text="Appointments" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono Medium" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainCustomers" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" text="Customers" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono Medium" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainReports" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" text="Reports" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono Medium" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainExit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="121.0" text="Exit" textAlignment="CENTER">
+               <font>
+                  <Font name="JetBrains Mono Medium" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
