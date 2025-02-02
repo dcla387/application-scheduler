@@ -3,14 +3,13 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
-
-import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -35,6 +34,10 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        Locale locale = Locale.getDefault();
+        String countryName = locale.getDisplayCountry();
+
+        location.setText(countryName);
 
     }
 
