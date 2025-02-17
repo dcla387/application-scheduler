@@ -40,6 +40,7 @@ public class mainController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
         Scene scene = new Scene(root);
         stage.setTitle("Appt Page");
         stage.setScene(scene);
