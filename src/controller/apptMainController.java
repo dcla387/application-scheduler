@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class apptMainController {
 
+    public void onActionExitAppt(ActionEvent event) {System.exit(0);}
+
     public void toMainButtonClick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
 
