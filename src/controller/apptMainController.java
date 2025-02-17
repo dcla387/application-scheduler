@@ -22,4 +22,14 @@ public class apptMainController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void onActionToCustRecs(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustMain.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Customer Recs Page");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

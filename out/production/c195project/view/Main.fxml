@@ -18,7 +18,7 @@
                   <Font name="JetBrains Mono Medium" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="mainCustomers" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" text="Customers" textAlignment="CENTER">
+            <Button fx:id="mainCustomers" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickCusts" prefHeight="30.0" prefWidth="121.0" text="Customers" textAlignment="CENTER">
                <font>
                   <Font name="JetBrains Mono Medium" size="14.0" />
                </font>

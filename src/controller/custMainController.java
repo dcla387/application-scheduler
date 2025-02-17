@@ -23,4 +23,17 @@ public class custMainController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void onClickAppts(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        Scene scene = new Scene(root);
+        stage.setTitle("Appt Page");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
