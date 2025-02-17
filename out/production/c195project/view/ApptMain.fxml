@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ApptMain">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.apptMainController">
    <children>
+      <Button layoutX="240.0" layoutY="43.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" text="Delete" />
       <Text layoutX="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments" textAlignment="CENTER" wrappingWidth="186.13671875" AnchorPane.bottomAnchor="368.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="8.0">
          <font>
             <Font name="JetBrains Mono Medium" size="24.0" />
-         </font>
+         </font>ss
       </Text>
       <Separator layoutX="326.0" layoutY="40.0" prefHeight="0.0" prefWidth="209.0" AnchorPane.rightAnchor="500.0" />
       <Button layoutX="31.0" layoutY="43.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" text="Add" />
@@ -26,15 +20,22 @@
         <columns>
           <TableColumn prefWidth="105.0" text="Appt ID" />
           <TableColumn prefWidth="45.0" text="Title" />
-            <TableColumn prefWidth="75.0" text="Description" />
-            <TableColumn prefWidth="75.0" text="Location" />
-            <TableColumn prefWidth="75.0" text="Type" />
-            <TableColumn prefWidth="75.0" text="Start Date/Time" />
-            <TableColumn prefWidth="75.0" text="End Date/Time" />
-            <TableColumn prefWidth="75.0" text="Customer ID" />
+            <TableColumn prefWidth="200.0" text="Description" />
+            <TableColumn prefWidth="150.0" text="Location" />
+            <TableColumn prefWidth="75.0" text="Contact" />
+            <TableColumn prefWidth="140.0" text="Type " />
+            <TableColumn prefWidth="125.0" text="Start Date / Time" />
+            <TableColumn prefWidth="125.0" text="End Date / Time" />
             <TableColumn prefWidth="75.0" text="User ID" />
-            <TableColumn prefWidth="75.0" text="Contact ID" />
+            <TableColumn prefWidth="75.0" text="Customer ID" />
         </columns>
       </TableView>
+      <Text layoutX="200.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort Appointments:" textAlignment="CENTER" wrappingWidth="140.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="350.0" layoutY="355.0" mnemonicParsing="false" text="Month" />
+      <RadioButton layoutX="350.0" layoutY="380.0" mnemonicParsing="false" text="Week" />
    </children>
 </AnchorPane>

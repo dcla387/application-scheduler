@@ -13,7 +13,7 @@
                   <Font name="JetBrains Mono SemiBold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="mainAppointments" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" text="Appointments" textAlignment="CENTER">
+            <Button fx:id="mainAppointments" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickAppts" prefHeight="30.0" prefWidth="121.0" text="Appointments" textAlignment="CENTER">
                <font>
                   <Font name="JetBrains Mono Medium" size="14.0" />
                </font>
