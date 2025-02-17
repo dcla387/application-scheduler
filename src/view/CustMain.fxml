@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.CustMain"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.custMainController">
+    <children>
 
+        <Text layoutX="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers" textAlignment="CENTER" wrappingWidth="186.13671875" AnchorPane.bottomAnchor="372.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="5.0">
+            <font>
+                <Font name="JetBrains Mono Medium" size="24.0" />
+            </font>ss
+        </Text>
+        <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+        <Button fx:id="MainCustScreen" layoutX="882.0" layoutY="48.0" mnemonicParsing="false" onAction="#toMainButtonClick" prefHeight="35.0" prefWidth="95.0" text="Main" AnchorPane.rightAnchor="40.0" />
+        <TableView layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="1118.0">
+            <columns>
+                <TableColumn maxWidth="3500.0" prefWidth="145.0" text="Customer Name" />
+                <TableColumn prefWidth="175.0" text="Address" />
+                <TableColumn prefWidth="100.0" text="Country" />
+                <TableColumn prefWidth="150.0" text="City" />
+                <TableColumn prefWidth="75.0" text="Zip/Postal Code" />
+                <TableColumn prefWidth="140.0" text="Phone Number" />
+            </columns>
+        </TableView>
+        <HBox spacing="10" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="43.0">
+            <Button prefHeight="35.0" prefWidth="95.0" text="Add Cust" />
+            <Button prefHeight="35.0" prefWidth="95.0" text="Modify Cust" />
+            <Button prefHeight="35.0" prefWidth="95.0" text="Delete Cust" />
+        </HBox>
+        <Button fx:id="logoffCust" layoutX="882.0" layoutY="350.0" mnemonicParsing="false" onAction="#onActionExitCust" prefHeight="35.0" prefWidth="95.0" text="Log Off" AnchorPane.rightAnchor="40.0" />
+        <Button layoutX="814.0" layoutY="48.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Appointments" />
+
+    </children>
 </AnchorPane>

@@ -47,4 +47,15 @@ public class mainController implements Initializable {
         stage.show();
     }
 
+
+    public void onClickCusts(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustMain.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        Scene scene = new Scene(root);
+        stage.setTitle("Cust Page");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

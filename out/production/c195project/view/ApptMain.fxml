@@ -41,6 +41,7 @@
        <Button prefHeight="35.0" prefWidth="95.0" text="Delete Appt" />
       </HBox>
       <Button fx:id="logoffAppt" layoutX="882.0" layoutY="350.0" mnemonicParsing="false" onAction="#onActionExitAppt" prefHeight="35.0" prefWidth="95.0" text="Log Off" AnchorPane.rightAnchor="40.0" />
+      <Button layoutX="814.0" layoutY="48.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Customer Records" />
 
    </children>
 </AnchorPane>
