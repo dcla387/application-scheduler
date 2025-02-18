@@ -35,5 +35,15 @@ public class custMainController {
         stage.show();
     }
 
+    public void toAddCustomer(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddCust.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        Scene scene = new Scene(root);
+        stage.setTitle("Add Cust Page");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }

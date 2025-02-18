@@ -6,9 +6,88 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.AddCust"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.custMainController">
+
+    <children>
+        <Label fx:id="addCustomerScreenLabel" layoutX="231.0" layoutY="14.0" text="Add Customer" />
+        <VBox alignment="CENTER" layoutX="75.0" layoutY="97.0" prefHeight="400.0" prefWidth="450.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="addCustomerIDLabel" text="Customer ID">
+
+                        </Label>
+                        <TextField fx:id="addCustomerIDTextField" disable="true" editable="false" promptText="auto gen - Customer ID" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="addCustomerNameLabel" text="Customer Name">
+
+                        </Label>
+                        <TextField fx:id="addCustomerNameTextField" promptText="Customer Name" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="addCustomerAddress1Label" text="Address Line 1">
+
+                        </Label>
+                        <TextField fx:id="addCustomerAddress1TextField" promptText="Address Line 1" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="addCustomerAddress2Label" text="Address Line 2">
+
+                        </Label>
+                        <TextField fx:id="addCustomerAddress2TextField" promptText="Address Line 2" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="addCustomerPhoneLabel" text="Phone Number">
+
+                        </Label>
+                        <TextField fx:id="addCustomerPhoneTextField" promptText="Phone Number" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="75.0" prefWidth="450.0" spacing="10.0">
+                            <children>
+                                <Label fx:id="addCustomerCityLabel" text="City">
+
+                                </Label>
+                                <TextField fx:id="addCustomerCityTextField" prefWidth="150.0" promptText="City" />
+                                <Label fx:id="addCustomerStateLabel" text="State">
+
+                                </Label>
+                                <TextField fx:id="addCustomerStateTextField" prefWidth="75.0" promptText="State" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="75.0" prefWidth="200.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="75.0" prefWidth="450.0" spacing="10.0">
+                            <children>
+                                <Label fx:id="addCustomerZipLabel" text="Zip" />
+                                <TextField fx:id="addCustomerZipTextField" prefWidth="75.0" promptText="Zip" />
+                                <Label fx:id="addCustomerCountryLabel" text="Country" />
+                                <TextField fx:id="addCustomerCountryTextField" prefWidth="150.0" promptText="Country" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Button fx:id="addCustomerSaveButton" mnemonicParsing="false" onAction="#AddCustomerSaveButtonPushed" text="Save" />
+                        <Button fx:id="addCustomerCancelButton" mnemonicParsing="false" text="Cancel" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 
 </AnchorPane>
