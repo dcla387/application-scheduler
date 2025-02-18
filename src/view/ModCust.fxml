@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.ModCust"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modCustController">
+    <children>
 
+        <Label alignment="CENTER" layoutY="14.0" text="Modify Customer Data" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <font>
+                <Font name="JetBrains Mono Medium" size="24.0" />
+            </font>
+        </Label>
+
+
+        <Separator layoutY="47.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" />
+
+        <VBox alignment="CENTER" layoutX="25.0" layoutY="66.0" prefHeight="304.0" prefWidth="500.0" AnchorPane.topAnchor="65.0">
+            <children>
+                <GridPane alignment="CENTER" hgap="10" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="LEFT" minWidth="100" prefWidth="100" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="200" prefWidth="250" />
+                        <ColumnConstraints minWidth="50" prefWidth="50" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="100" prefWidth="100" />
+                    </columnConstraints>
+
+
+                    <Label fx:id="addCustID" text="Customer ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="addCustIDTextField" disable="true" editable="false" promptText="Customer ID automatic" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+
+                    <Label fx:id="addCustName" text="Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="addCustNameTextField" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+                    <Label fx:id="addCustAddress1" text="Address Line 1" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="addCustAddress1TextField" promptText="Address Line 1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+                    <Label fx:id="addCustAddress2" text="Address Line 2" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="addCustAddress2TextField" promptText="Address Line 2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+
+                    <Label fx:id="addCustomerPhoneLabel" text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <TextField fx:id="addCustomerPhoneTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+
+                    <Label fx:id="addCustCity" text="City" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <TextField fx:id="addCustCityTextField" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <Label fx:id="addCustState" text="State" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <TextField fx:id="addCustStateTextField" promptText="State" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+
+
+                    <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                    <TextField fx:id="addCustCountryTextField" prefHeight="25.0" prefWidth="182.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Label fx:id="addCustZip" text="Zip" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                    <TextField fx:id="addCustZipTextField" promptText="Zip/Postal Code" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+
+
+                    <HBox alignment="CENTER" spacing="20.0" GridPane.columnSpan="3" GridPane.rowIndex="7">
+                        <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
+                        <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
+                    </HBox>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+            <padding>
+                <Insets top="5.0" />
+            </padding>
+        </VBox>
+    </children>
 </AnchorPane>

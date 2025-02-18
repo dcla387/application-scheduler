@@ -12,7 +12,7 @@ import java.io.IOException;
 public class addCustController {
 
     public void onClickToSaveCustomer(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/AddCust.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustMain.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
