@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.custMainController">
     <children>
 
-        <Text layoutX="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers" textAlignment="CENTER" wrappingWidth="186.13671875" AnchorPane.bottomAnchor="372.0" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="332.0" AnchorPane.topAnchor="5.0">
+        <Text layoutX="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Records" textAlignment="CENTER" wrappingWidth="283.13671875" AnchorPane.bottomAnchor="363.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="262.0" AnchorPane.topAnchor="5.0">
             <font>
                 <Font name="JetBrains Mono Medium" size="24.0" />
             </font>ss

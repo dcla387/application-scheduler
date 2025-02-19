@@ -64,16 +64,7 @@
                                 <Button fx:id="addCustSaveButton" mnemonicParsing="false" onAction="#onClickToSaveCustomer" prefHeight="25.0" prefWidth="62.0" text="Save" />
                                 <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                             </HBox>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
+
                         </GridPane>
                     </children>
                     <padding>
