@@ -60,4 +60,14 @@ public class mainController implements Initializable {
     }
 
 
+    public void onClickToReports(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Report.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        Scene scene = new Scene(root);
+        stage.setTitle("Report Page");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

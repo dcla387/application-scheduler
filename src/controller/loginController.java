@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 public class loginController implements Initializable {
 
+    private static final String ADMIN_TEST_USER = "admin";
+    private static final String ADMIN_TEST_PASS = "password123";
+
     @FXML
     private TextField userName;
 
@@ -49,18 +52,32 @@ public class loginController implements Initializable {
     }
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Main Page");
-        stage.setScene(scene);
-        stage.show();
+            String userInput = userName.getText();
+            String passInput = password.getText();
+
+            if (userInput.equals(ADMIN_TEST_USER) && passInput.equals(ADMIN_TEST_PASS)) {
+
+
+                Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setTitle("Main Page");
+                stage.setScene(scene);
+                stage.show();
+
+            } else {
+                error("Login Error", "Bad Credntials", "MUST USE PROVIDED TEST CREDENTIALS" );
+            }
     }
 
-
-
-
-
+    private void error(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+}
 
 }
