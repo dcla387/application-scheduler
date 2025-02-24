@@ -48,6 +48,8 @@ public class loginController implements Initializable {
         ZoneId zoneId = ZoneId.systemDefault();
         location.setText(zoneId.toString());
 
+        boolean isFrench = Locale.getDefault().getLanguage().equals("fr");
+
     }
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
