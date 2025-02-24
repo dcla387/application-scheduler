@@ -26,57 +26,55 @@
                     </columnConstraints>
 
 
-                    <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <TextField fx:id="apptIDTextField" disable="true" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Label text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <TextField fx:id="customerSearchField" promptText="Search Customer" />
+                        <ComboBox fx:id="customerComboBox" prefWidth="250" />
+                    </VBox>
 
-                    <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                    <TextField fx:id="titleTextField" promptText="Appointment Title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="apptIDTextField" disable="true" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="titleTextField" promptText="Appointment Title" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
-                    <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <TextField fx:id="descriptionTextField" promptText="Description" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="descriptionTextField" promptText="Description" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                    <Label text="Location" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                    <TextField fx:id="locationTextField" promptText="Location" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Label text="Location" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <TextField fx:id="locationTextField" promptText="Location" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                    <Label text="Contact" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <ComboBox fx:id="contactComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <Label text="Contact" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="contactComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                    <Label text="Type" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                    <TextField fx:id="typeTextField" promptText="Appointment Type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <Label text="Type" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                    <TextField fx:id="typeTextField" promptText="Appointment Type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-                    <Label text="Start Date/Time" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                    <Label text="Start Date/Time" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
                         <DatePicker fx:id="startDatePicker" prefWidth="150" />
                         <ComboBox fx:id="startTimeComboBox" prefWidth="90" />
                     </HBox>
 
 
-                    <Label text="End Date/Time" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <Label text="End Date/Time" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
                         <DatePicker fx:id="endDatePicker" prefWidth="150" />
                         <ComboBox fx:id="endTimeComboBox" prefWidth="90" />
                     </HBox>
 
 
-                    <Label text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                        <TextField fx:id="customerSearchField" promptText="Search Customer" />
-                        <ComboBox fx:id="customerComboBox" prefWidth="250" />
-                    </VBox>
-
-
                     <Label text="User ID" GridPane.columnIndex="0" GridPane.rowIndex="9" />
                     <TextField fx:id="userIDTextField" promptText="User ID" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-
 
                     <HBox alignment="CENTER" prefHeight="37.0" prefWidth="386.0" spacing="20.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
                         <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onClickSaveAppt" prefHeight="25.0" prefWidth="80.0" text="Save">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onClickCancelAppt" prefHeight="25.0" prefWidth="80.0" text="Cancel" />
-                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#onClickGoBack" prefHeight="25.0" prefWidth="80.0" text="Back" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onClickToCancelAppointment" prefHeight="25.0" prefWidth="80.0" text="Cancel" />
+                        <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onClickToMainMenu" prefHeight="25.0" prefWidth="80.0" text="Main Menu" />
                   <padding>
                      <Insets top="18.0" />
                      <Insets left="55" />

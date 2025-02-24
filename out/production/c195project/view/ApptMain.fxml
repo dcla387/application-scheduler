@@ -36,8 +36,8 @@
       <RadioButton layoutX="562.0" layoutY="52.0" mnemonicParsing="false" text="Month" />
       <RadioButton layoutX="635.0" layoutY="52.0" mnemonicParsing="false" text="Week" />
       <HBox spacing="10" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="43.0">
-       <Button prefHeight="35.0" prefWidth="95.0" text="Add Appt" />
-       <Button prefHeight="35.0" prefWidth="95.0" text="Modify Appt" />
+       <Button fx:id="addAppts" onAction="#onClickAddAppts" prefHeight="35.0" prefWidth="95.0" text="Add Appt" />
+       <Button fx:id="ModApptsButton" onAction="#onClickToModAppt" prefHeight="35.0" prefWidth="95.0" text="Modify Appt" />
        <Button prefHeight="35.0" prefWidth="95.0" text="Delete Appt" />
       </HBox>
       <Button fx:id="logoffAppt" layoutX="882.0" layoutY="350.0" mnemonicParsing="false" onAction="#onActionExitAppt" prefHeight="35.0" prefWidth="95.0" text="Log Off" AnchorPane.rightAnchor="40.0" />

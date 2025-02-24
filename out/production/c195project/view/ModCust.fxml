@@ -64,7 +64,7 @@
                         <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
                         <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                     </HBox>
-                    
+
                 </GridPane>
             </children>
             <padding>
