@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modCustController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modCustController">
     <children>
 
         <Label alignment="CENTER" layoutY="14.0" text="Modify Customer Data" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -29,19 +29,19 @@
 
 
                     <Label fx:id="addCustID" text="Customer ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <TextField fx:id="addCustIDTextField" disable="true" editable="false" promptText="Customer ID automatic" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <TextField fx:id="addCustIDTextField" disable="true" editable="false" promptText="Cannot Edit" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
 
                     <Label fx:id="addCustName" text="Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                     <TextField fx:id="addCustNameTextField" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
-                    <Label fx:id="addCustAddress1" text="Address Line 1" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <TextField fx:id="addCustAddress1TextField" promptText="Address Line 1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label fx:id="addCustAddLine1" text="Address Line 1" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="addCustAddress1TextField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
-                    <Label fx:id="addCustAddress2" text="Address Line 2" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                    <TextField fx:id="addCustAddress2TextField" promptText="Address Line 2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Label fx:id="addCustAddLine2" text="Address Line 2" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="addCustAddress2TextField" promptText="Addres" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
 
                     <Label fx:id="addCustomerPhoneLabel" text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
@@ -55,7 +55,7 @@
 
 
                     <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                    <TextField fx:id="addCustCountryTextField" prefHeight="25.0" prefWidth="182.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <TextField fx:id="addCustCountryTextField" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                     <Label fx:id="addCustZip" text="Zip" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                     <TextField fx:id="addCustZipTextField" promptText="Zip/Postal Code" GridPane.columnIndex="3" GridPane.rowIndex="6" />
 
@@ -64,16 +64,7 @@
                         <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
                         <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                     </HBox>
-                    <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
+                    
                 </GridPane>
             </children>
             <padding>
