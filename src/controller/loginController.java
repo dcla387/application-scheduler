@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 
@@ -44,10 +45,8 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        Locale locale = Locale.getDefault();
-        String countryName = locale.getDisplayCountry();
-
-        location.setText(countryName);
+        ZoneId zoneId = ZoneId.systemDefault();
+        location.setText(zoneId.toString());
 
     }
 
