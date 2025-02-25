@@ -33,13 +33,22 @@ public class loginController implements Initializable {
     private PasswordField password;
 
     @FXML
+    private Label title;
+
+    @FXML
     private Button login;
 
     @FXML
-    private Button exit;
+    private Button logoff;
 
     @FXML
     private Label location;
+
+    @FXML
+    private Label userLabel;
+    @FXML
+    private Label passLabel;
+
 
         public void onActionExit(ActionEvent event) {System.exit(0);}
 
@@ -48,7 +57,32 @@ public class loginController implements Initializable {
         ZoneId zoneId = ZoneId.systemDefault();
         location.setText(zoneId.toString());
 
+        Locale.setDefault(new Locale("fr"));
         boolean isFrench = Locale.getDefault().getLanguage().equals("fr");
+
+        System.out.println("Current locale: " + Locale.getDefault());
+        System.out.println("Is French: " + isFrench);
+
+        if (isFrench) {
+            try {
+
+                ResourceBundle frMessages = ResourceBundle.getBundle("view.login_messages", Locale.FRENCH);
+
+
+                title.setText(frMessages.getString("login.title"));
+                userName.setPromptText(frMessages.getString("login.username"));
+                password.setPromptText(frMessages.getString("login.password"));
+                userLabel.setText(frMessages.getString("login.userLabel"));
+                passLabel.setText(frMessages.getString("login.passLabel"));
+                login.setText(frMessages.getString("login.login"));
+                logoff.setText(frMessages.getString("login.logoff"));
+
+
+            } catch (Exception e) {
+
+                System.out.println("Could not load French resources: " + e.getMessage());
+            }
+        }
 
     }
 
@@ -69,9 +103,23 @@ public class loginController implements Initializable {
                 stage.show();
 
             } else {
-                error("Login Error", "Bad Credntials", "MUST USE PROVIDED TEST CREDENTIALS" );
+
+                Locale currentLocale = Locale.getDefault();
+                ResourceBundle messages = ResourceBundle.getBundle("view.login_messages", currentLocale);
+
+                try {
+                    String errorTitle = messages.getString("error.title");
+                    String errorHeader = messages.getString("error.header");
+                    String errorContent = messages.getString("error.content");
+
+                    error(errorTitle, errorHeader, errorContent);
+                } catch (Exception e) {
+
+                    error("Login Error", "Bad Credentials", "MUST USE PROVIDED TEST CREDENTIALS");
+                }
             }
-    }
+            }
+
 
     private void error(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
