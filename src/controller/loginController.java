@@ -57,7 +57,7 @@ public class loginController implements Initializable {
         ZoneId zoneId = ZoneId.systemDefault();
         location.setText(zoneId.toString());
 
-        Locale.setDefault(new Locale("fr"));
+        // Locale.setDefault(new Locale("fr"));
         boolean isFrench = Locale.getDefault().getLanguage().equals("fr");
 
         System.out.println("Current locale: " + Locale.getDefault());
