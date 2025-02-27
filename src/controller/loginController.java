@@ -22,7 +22,8 @@ import java.util.ResourceBundle;
 
 
 public class loginController implements Initializable {
-
+//need to pull 2 users from database add passwords to those profiles in the database - 1 - ADMIN 2 - TEST
+    //then take this hardcoded username/password out
     private static final String ADMIN_TEST_USER = "admin";
     private static final String ADMIN_TEST_PASS = "password123";
 
