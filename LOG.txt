@@ -1,0 +1,6 @@
+Sat Mar 01 08:23:44 MST 2025 - ✔ Good Login:  userInput
+Sat Mar 01 08:24:05 MST 2025 - 🛑  FAILED Login:  userInput
+Sat Mar 01 08:25:07 MST 2025 - 🛑  FAILED Login: Putin
+Sat Mar 01 08:26:02 MST 2025 - 🛑  FAILED Login: PutinWarWarWar
+Sat Mar 01 08:27:25 MST 2025 - 🛑  FAILED Login: user Name: BambiPassword: Deerhunter
+Sat Mar 01 08:28:23 MST 2025 - 🛑  FAILED Login: user Name: Phoenix  Password: GiveMeFries

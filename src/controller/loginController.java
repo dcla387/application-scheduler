@@ -14,11 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.Date;
+
 
 
 public class loginController implements Initializable {
@@ -94,6 +98,8 @@ public class loginController implements Initializable {
 
             if (userInput.equals(ADMIN_TEST_USER) && passInput.equals(ADMIN_TEST_PASS)) {
 
+                new PrintWriter(new FileOutputStream("LOG.txt", true), true)
+                        .println(new Date().toString() + " - ✔ Good Login: " + userInput);
 
                 Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
 
@@ -104,6 +110,9 @@ public class loginController implements Initializable {
                 stage.show();
 
             } else {
+
+                new PrintWriter(new FileOutputStream("LOG.txt", true), true)
+                        .println(new Date().toString() + " - 🛑  FAILED Login: " + "user Name: " + userInput + "  Password: " + passInput);
 
                 Locale currentLocale = Locale.getDefault();
                 ResourceBundle messages = ResourceBundle.getBundle("view.login_messages", currentLocale);
