@@ -98,7 +98,7 @@ public class loginController implements Initializable {
 
             if (userInput.equals(ADMIN_TEST_USER) && passInput.equals(ADMIN_TEST_PASS)) {
 
-                new PrintWriter(new FileOutputStream("LOG.txt", true), true)
+                new PrintWriter(new FileOutputStream("login_activity.txt", true), true)
                         .println(new Date().toString() + " - ✔ Good Login: " + userInput);
 
                 Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
@@ -111,7 +111,7 @@ public class loginController implements Initializable {
 
             } else {
 
-                new PrintWriter(new FileOutputStream("LOG.txt", true), true)
+                new PrintWriter(new FileOutputStream("login_activity.txt", true), true)
                         .println(new Date().toString() + " - 🛑  FAILED Login: " + "user Name: " + userInput + "  Password: " + passInput);
 
                 Locale currentLocale = Locale.getDefault();

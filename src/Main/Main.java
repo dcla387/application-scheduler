@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.JDBC;
-
-import java.io.IOException;
+import DAO.JDBC;
 
 public class Main extends Application {
 
@@ -23,5 +21,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         JDBC.makeConnection();
         launch(args);
+        JDBC.closeConnection();
+
+
     }
 }
