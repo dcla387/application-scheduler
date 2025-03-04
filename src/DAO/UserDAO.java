@@ -3,12 +3,15 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
-    public UserDAO(int userNumber, String userName, String password) {
+    public static boolean userValidation(String userName, String password) {
         try {
+            Connection connection = JDBC.getConnection();
+
             String userLookup = "SELECT * FROM users WHERE userName = ? AND password = ?";
-            PreparedStatement ps = ps.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(userLookup);
 
             ps.setString(1, userName);
             ps.setString(2, password);
@@ -17,6 +20,8 @@ public class UserDAO {
             return rs.next();
         } catch (Exception e) {
             System.out.println("Database error during authentication: " + e.getMessage());
+            return false;
         }
     }
+
 }

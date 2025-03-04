@@ -23,13 +23,20 @@ import java.time.ZoneId;
 import java.util.ResourceBundle;
 import java.util.Date;
 
+import DAO.JDBC;
+import DAO.UserDAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 
 public class loginController implements Initializable {
 //need to pull 2 users from database add passwords to those profiles in the database - 1 - ADMIN 2 - TEST
     //then take this hardcoded username/password out
-    private static final String ADMIN_TEST_USER = "admin";
-    private static final String ADMIN_TEST_PASS = "password123";
+    //private static final String ADMIN_TEST_USER = "admin";
+    //private static final String ADMIN_TEST_PASS = "password123";
 
     @FXML
     private TextField userName;
