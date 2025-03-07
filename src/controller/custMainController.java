@@ -2,7 +2,10 @@ package controller;
 
 import DAO.CustomerDAO;
 import DAO.JDBC;
+import Model.Customer;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -10,6 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,8 +23,44 @@ import java.io.IOException;
 
 public class custMainController implements Initializable {
 
+    @FXML
+    private TableView<Customer> customerTableView;
+    @FXML
+    private TableColumn<Customer, String> nameColumn;
+    @FXML
+    private TableColumn<Customer, String> addressColumn;
+    @FXML
+    private TableColumn<Customer, String> countryColumn;
+    @FXML
+    private TableColumn<Customer, String> divisionColumn;
+    @FXML
+    private TableColumn<Customer, String> postalCodeColumn;
+    @FXML
+    private TableColumn<Customer, String> phoneColumn;
 
-    public void onActionExitCust(ActionEvent event) {System.exit(0);}
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Set up table columns to display the correct Customer properties
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("countryName"));
+        divisionColumn.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
+        postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+        // Load customer data
+        loadCustomerData();
+    }
+
+    private void loadCustomerData(){
+        ObservableList<Customer> customerList = CustomerDAO.getAllCustomers();
+        customerTableView.setItems(customerList);
+    }
+
+
+    public void onActionExitCust(ActionEvent event) {
+        System.exit(0);
+    }
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
@@ -63,8 +105,5 @@ public class custMainController implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 }
