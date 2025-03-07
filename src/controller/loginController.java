@@ -103,7 +103,7 @@ public class loginController implements Initializable {
             String userInput = userName.getText();
             String passInput = password.getText();
 
-            if (userInput.equals(ADMIN_TEST_USER) && passInput.equals(ADMIN_TEST_PASS)) {
+            if (UserDAO.userValidation(userInput, passInput)) {
 
                 new PrintWriter(new FileOutputStream("login_activity.txt", true), true)
                         .println(new Date().toString() + " - ✔ Good Login: " + userInput);

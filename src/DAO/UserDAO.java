@@ -10,7 +10,7 @@ public class UserDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            String userLookup = "SELECT * FROM users WHERE userName = ? AND password = ?";
+            String userLookup = "SELECT * FROM users WHERE User_Name = ? AND Password = ?";
             PreparedStatement ps = connection.prepareStatement(userLookup);
 
             ps.setString(1, userName);
