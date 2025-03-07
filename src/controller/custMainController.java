@@ -1,15 +1,21 @@
 package controller;
 
+import DAO.CustomerDAO;
+import DAO.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import java.io.IOException;
 
-public class custMainController {
+public class custMainController implements Initializable {
 
 
     public void onActionExitCust(ActionEvent event) {System.exit(0);}
@@ -57,4 +63,8 @@ public class custMainController {
         stage.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
