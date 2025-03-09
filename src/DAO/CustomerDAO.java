@@ -11,29 +11,23 @@ import java.sql.SQLException;
 public class CustomerDAO {
     public static ObservableList<Customer> getAllCustomers() {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
-
         try {
-
             Connection connection = JDBC.getConnection();
+            String custLookup = "select * from customers";
+            PreparedStatement preparedStatement = connection.prepareStatement(custLookup);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            String custLookup = "SELECT * FROM customers";
-            PreparedStatement ps = connection.prepareStatement(custLookup);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                int customerId = rs.getInt("Customer_ID");
-                String customerName = rs.getString("Customer_Name");
-                String address = rs.getString("Address");
-                String postalCode = rs.getString("Postal_Code");
-                String phone = rs.getString("Phone");
-                int divisionId = rs.getInt("Division_ID");
-
-                String divisionName = getDivisionName(connection, divisionId);
-
-                Customer customer = new Customer(customerId, customerName, address, postalCode, phone, divisionId, divisionName);
-
+            while (resultSet.next()) {
+                Customer customer = new Customer(
+                resultSet.getInt("Customer_ID"),
+                resultSet.getString("Customer_Name"),
+                resultSet.getString("Address"),
+                resultSet.getString("Postal_Code"),
+                resultSet.getString("Phone"),
+                resultSet.getInt("Division_ID"),
+                getDivisionName(connection, resultSet.getInt("Division_ID"))
+            );
                 customerList.add(customer);
-
             }
 
         } catch (SQLException error) {
@@ -47,12 +41,12 @@ public class CustomerDAO {
 
         public static String getDivisionName(Connection connection, int divisionId){
             try {
-                String divLookup = "SELECT Division FROM first_level_divisions WHERE Division_ID = ?";
-                PreparedStatement ps = connection.prepareStatement(divLookup);
-                ps.setInt(1, divisionId);
-                ResultSet rs = ps.executeQuery();
+                String divLookup = "select Division from first_level_divisions where Division_ID = " + divisionId;
+                PreparedStatement preparedStatement = connection.prepareStatement(divLookup);
+                preparedStatement.setInt(1, divisionId);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                if (rs.next()){ return rs.getString("Division");
+                if (resultSet.next()){ return resultSet.getString("Division");
                 }
             } catch (SQLException error) {
                 System.out.println("Division Name not loadin " + error.getMessage());
