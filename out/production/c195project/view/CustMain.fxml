@@ -17,8 +17,8 @@
         <TableView fx:id="customerTableView" layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="775.0">
             <columns>
                 <TableColumn fx:id="nameColumn" maxWidth="3500.0" prefWidth="150.0" text="Name" />
-                <TableColumn fx:id="addressColumn" prefWidth="175.0" text="Address" />s
-                <TableColumn fx:id="countryColumn" prefWidth="135.0" text="Zip/Postal Code" />
+                <TableColumn fx:id="addressColumn" prefWidth="175.0" text="Address" />
+                <TableColumn fx:id="postalCodeColumn" prefWidth="135.0" text="Zip/Postal Code" />
                 <TableColumn fx:id="divisionColumn" prefWidth="150.0" text="Domicile" />
                 <TableColumn fx:id="phoneColumn" prefWidth="164.0" text="Phone Number" />
             </columns>
