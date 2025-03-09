@@ -1,5 +1,11 @@
 package controller;
 
+import DAO.CountryDAO;
+import DAO.CustomerDAO;
+import DAO.DivisionDAO;
+import Model.Customer;
+import Model.Country;
+import Model.Division;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.net.URL;
+import javafx.collections.ObservableList;
 import java.util.ResourceBundle;
 
 import java.io.IOException;
@@ -30,10 +37,10 @@ public class modCustController implements Initializable {
     private TextField addCustomerPhoneTextField;
 
     @FXML
-    private ComboBox<String> addCustCountryTextField;
+    private ComboBox<String> addCustCountryComboBox;
 
     @FXML
-    private ComboBox<String> addCustStateTextField;
+    private ComboBox<String> addCustStateComboBox;
 
     @FXML
     private TextField addCustZipTextField;
@@ -63,5 +70,18 @@ public class modCustController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        ObservableList<Country> countries = CountryDAO.getCountries();
+        addCustCountryComboBox.setItems(countries);
+
     }
+
+    //Example 14-1 Creating a Combo Box with an Observable List
+    //
+    //ObservableList<String> options =
+    //    FXCollections.observableArrayList(
+    //        "Option 1",
+    //        "Option 2",
+    //        "Option 3"
+    //    );
+    //final ComboBox comboBox = new ComboBox(options);
 }
