@@ -30,11 +30,11 @@ public class custMainController implements Initializable {
     @FXML
     private TableColumn<Customer, String> addressColumn;
     @FXML
-    private TableColumn<Customer, String> countryColumn;
+    private TableColumn<Customer, String> postalCodeColumn;
+
     @FXML
     private TableColumn<Customer, String> divisionColumn;
-    @FXML
-    private TableColumn<Customer, String> postalCodeColumn;
+
     @FXML
     private TableColumn<Customer, String> phoneColumn;
 
@@ -43,7 +43,6 @@ public class custMainController implements Initializable {
         // Set up table columns to display the correct Customer properties
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        countryColumn.setCellValueFactory(new PropertyValueFactory<>("countryName"));
         divisionColumn.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));

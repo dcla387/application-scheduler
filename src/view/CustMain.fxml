@@ -16,12 +16,11 @@
         <Button fx:id="MainCustScreen" layoutX="882.0" layoutY="48.0" mnemonicParsing="false" onAction="#toMainButtonClick" prefHeight="35.0" prefWidth="95.0" text="Main" AnchorPane.rightAnchor="40.0" />
         <TableView fx:id="customerTableView" layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="775.0">
             <columns>
-                <TableColumn fx:id="nameColumn" maxWidth="3500.0" prefWidth="150.0" text="Customer Name" />
-                <TableColumn fx:id="addressColumn" prefWidth="175.0" text="Address" />
-                <TableColumn fx:id="countryColumn" prefWidth="100.0" text="Country" />
-                <TableColumn fx:id="divisionColumn" prefWidth="150.0" text="City" />
-                <TableColumn fx:id="postalCodeColumn" prefWidth="75.0" text="Zip/Postal Code" />
-                <TableColumn fx:id="phoneColumn" prefWidth="150.0" text="Phone Number" />
+                <TableColumn fx:id="nameColumn" maxWidth="3500.0" prefWidth="150.0" text="Name" />
+                <TableColumn fx:id="addressColumn" prefWidth="175.0" text="Address" />s
+                <TableColumn fx:id="postalCodeColumn" prefWidth="135.0" text="Zip/Postal Code" />
+                <TableColumn fx:id="divisionColumn" prefWidth="150.0" text="Domicile" />
+                <TableColumn fx:id="phoneColumn" prefWidth="164.0" text="Phone Number" />
             </columns>
         </TableView>
         <HBox spacing="10" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="43.0">
