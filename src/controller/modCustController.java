@@ -2,7 +2,8 @@ package controller;
 
 import DAO.CountryDAO;
 import Model.Country;
-import com.mysql.cj.CacheAdapter;
+import DAO.DivisionDAO;
+import Model.Division;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,7 @@ public class modCustController implements Initializable {
     private ComboBox<Country> addCustCountryComboBox;
 
     @FXML
-    private ComboBox<String> addCustStateComboBox;
+    private ComboBox<Division> addCustStateComboBox;
 
     @FXML
     private TextField addCustZipTextField;
@@ -70,11 +71,13 @@ public class modCustController implements Initializable {
         ObservableList<Country> countries = CountryDAO.getCountries();
         addCustCountryComboBox.setItems(countries);
 
+   }
 
-        ObservableList<Division> divisions = DivisionDAO.get();
-        addCustCountryComboBox.setItems(countries);
-
-    }
+   public void onCountrySelected(){
+        Country selectedCountry = addCustCountryComboBox.getValue();
+        ObservableList<Division> divisions = DivisionDAO.getDivisions();
+        addCustStateComboBox.setItems(divisions);
+   }
 
     //Example 14-1 Creating a Combo Box with an Observable List
     //

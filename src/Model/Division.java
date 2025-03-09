@@ -1,6 +1,7 @@
 package Model;
 
 public class Division {
-    public Division(String name) {
+
+    public Division(int divisionId, String name, int countryId) {
     }
 }

@@ -20,9 +20,11 @@ public class DivisionDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
+                int divisionId = resultSet.getInt("Division_ID");
                 String name = resultSet.getString("Division");
+                int countryId = resultSet.getInt("Country_ID");
 
-                Division division = new Division(name);
+                Division division = new Division(divisionId, name, countryId);
                 divisionsList.add(division);
             }
         } catch (Exception error) {
@@ -36,7 +38,7 @@ public class DivisionDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            String divisionLookup = "select Country_ID from first_level_divisions where Division_ID = " + divisionId;
+            String divisionLookup = "select * from first_level_divisions where Division_ID = " + divisionId;
             PreparedStatement preparedStatement = connection.prepareStatement(divisionLookup);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -48,10 +50,13 @@ public class DivisionDAO {
                 resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    return new Country(
-                            resultSet.getInt("Country_ID"),
-                            resultSet.getString("Country")
+                    return new Division(
+                            resultSet.getInt("Division_ID"),
+                            resultSet.getString("Division"),
+                            resultSet.getInt("Country_ID")
                     );
+
+
                 }
             }
         } catch (Exception e) {
