@@ -37,16 +37,14 @@ public class CountryDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            // First get the country ID from the division
-            String divisionLookup = "SELECT Country_ID FROM first_level_divisions WHERE Division_ID = " + divisionId;
+            String divisionLookup = "select Country_ID from first_level_divisions where Division_ID = " + divisionId;
             PreparedStatement preparedStatement = connection.prepareStatement(divisionLookup);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 int countryId = resultSet.getInt("Country_ID");
 
-                // Then get the country info
-                divisionLookup = "SELECT * FROM countries WHERE Country_ID = " + countryId;
+                divisionLookup = "select * from countries where Country_ID = " + countryId;
                 preparedStatement = connection.prepareStatement(divisionLookup);
                 resultSet = preparedStatement.executeQuery();
 

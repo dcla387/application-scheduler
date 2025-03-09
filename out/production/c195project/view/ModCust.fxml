@@ -48,11 +48,11 @@
 
 
                     <Label fx:id="addCustState" text="State/Province" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="addCustStateTextField" prefHeight="25.0" prefWidth="219.0" promptText="State/Province" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="addCustStateComboBox" prefHeight="25.0" prefWidth="219.0" promptText="State/Province" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
                     <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <ComboBox fx:id="addCustCountryTextField" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="addCustCountryComboBox" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
 
 
@@ -60,16 +60,6 @@
                         <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
                         <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                     </HBox>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
 
                 </GridPane>
             </children>

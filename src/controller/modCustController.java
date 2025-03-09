@@ -1,11 +1,8 @@
 package controller;
 
 import DAO.CountryDAO;
-import DAO.CustomerDAO;
-import DAO.DivisionDAO;
-import Model.Customer;
 import Model.Country;
-import Model.Division;
+import com.mysql.cj.CacheAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +34,7 @@ public class modCustController implements Initializable {
     private TextField addCustomerPhoneTextField;
 
     @FXML
-    private ComboBox<String> addCustCountryComboBox;
+    private ComboBox<Country> addCustCountryComboBox;
 
     @FXML
     private ComboBox<String> addCustStateComboBox;
@@ -71,6 +68,10 @@ public class modCustController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         ObservableList<Country> countries = CountryDAO.getCountries();
+        addCustCountryComboBox.setItems(countries);
+
+
+        ObservableList<Division> divisions = DivisionDAO.get();
         addCustCountryComboBox.setItems(countries);
 
     }
