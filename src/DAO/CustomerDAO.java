@@ -43,7 +43,6 @@ public class CustomerDAO {
             try {
                 String divLookup = "select Division from first_level_divisions where Division_ID = " + divisionId;
                 PreparedStatement preparedStatement = connection.prepareStatement(divLookup);
-                preparedStatement.setInt(1, divisionId);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()){ return resultSet.getString("Division");
