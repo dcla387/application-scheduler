@@ -15,7 +15,7 @@ public class Division {
         this.countryId = countryId;
     }
 
-    public int getDivisionID() { return divisionId;}
+
     public String getName() { return name;}
     public int getCountryId() { return countryId;}
 
@@ -23,4 +23,8 @@ public class Division {
 
     @Override
     public String toString() {return name;}
+
+    public int getDivisionId() {
+        return divisionId;
+    }
 }

@@ -22,4 +22,8 @@ public class Country {
     public String toString() {
         return countryName;
     }
+
+    public int getCountryId() {
+        return countryID;
+    }
 }

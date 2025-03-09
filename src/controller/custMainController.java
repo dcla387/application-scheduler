@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import javafx.scene.control.TableView;
@@ -94,7 +95,20 @@ public class custMainController implements Initializable {
     }
 
     public void onClickToModCust(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ModCust.fxml"));
+
+        Customer selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Selet a Customer");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModCust.fxml"));
+        Parent root = loader.load();
+
+        modCustController controller = loader.getController();
+        controller.initData(selectedCustomer);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();

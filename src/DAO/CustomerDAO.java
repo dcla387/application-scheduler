@@ -39,6 +39,22 @@ public class CustomerDAO {
 
         }
 
+        public static boolean updateCustomer(int customerId, String name, String address, String postalCode, String phone, int divisionId) {
+            try {
+                Connection connection = JDBC.getConnection();
+                String update = "Update Customers Set Customer_Name = '" + name + "', Address = '" + address + "', Postal_Code = '" + postalCode + "', Phone = '" + phone + "', Division_ID = " + divisionId + "where Customer_ID = " + customerId;
+
+                PreparedStatement preparedStatement = connection.prepareStatement(update);
+                int rowsUpdated = preparedStatement.executeUpdate();
+                return rowsUpdated > 0;
+            } catch (SQLException error) {
+                System.out.println("Error in updating Customer " + error.getMessage());
+                return false;
+            }
+
+
+        }
+
         public static String getDivisionName(Connection connection, int divisionId){
             try {
                 String divLookup = "select Division from first_level_divisions where Division_ID = " + divisionId;
