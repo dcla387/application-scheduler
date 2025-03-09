@@ -104,6 +104,7 @@ public class custMainController implements Initializable {
         if (selectedCustomer == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Please Selet a Customer");
+            alert.showAndWait();
             return;
         }
 
