@@ -38,10 +38,10 @@ public class addCustController implements Initializable {
     private TextField newCustomerPhoneTextField;
 
     @FXML
-    private ComboBox<Country> newCustCountryComboBox;
+    private ComboBox<Country> addCustCountryComboBox;
 
     @FXML
-    private ComboBox<Division> newCustStateComboBox;
+    private ComboBox<Division> addCustStateComboBox;
 
     @FXML
     private TextField newCustZipTextField;
@@ -54,7 +54,7 @@ public class addCustController implements Initializable {
         String address = newCustAddress1TextField.getText();
         String postalCode = newCustZipTextField.getText();
         String phone = newCustomerPhoneTextField.getText();
-        Division division = newCustStateComboBox.getValue();
+        Division division = addCustStateComboBox.getValue();
 
         if (name.isEmpty() || address.isEmpty() || postalCode.isEmpty() ||
                 phone.isEmpty() || division == null) {
@@ -101,21 +101,21 @@ public class addCustController implements Initializable {
         int divisionId = customer.getDivisionId();
         Country customerCountry = CountryDAO.getCountryByDivisionId(divisionId);
 
-        for (Country country : newCustCountryComboBox.getItems()) {
+        for (Country country : addCustCountryComboBox.getItems()) {
             if (country.getCountryId() == customerCountry.getCountryId()) {
-                newCustCountryComboBox.setValue(country);
+                addCustCountryComboBox.setValue(country);
                 break;
             }
         }
 
 
         ObservableList<Division> divisions = DivisionDAO.getDivisionsByCountry(customerCountry.getCountryId());
-        newCustStateComboBox.setItems(divisions);
+        addCustStateComboBox.setItems(divisions);
 
 
         for (Division division : divisions) {
             if (division.getDivisionId() == divisionId) {
-                newCustStateComboBox.setValue(division);
+                addCustStateComboBox.setValue(division);
                 break;
             }
         }
@@ -136,14 +136,14 @@ public class addCustController implements Initializable {
     public void initialize (URL url, ResourceBundle resourceBundle){
 
         ObservableList<Country> countries = CountryDAO.getCountries();
-        newCustCountryComboBox.setItems(countries);
+        addCustCountryComboBox.setItems(countries);
 
     }
 
     public void onCountrySelected () {
-        Country selectedCountry = newCustCountryComboBox.getValue();
+        Country selectedCountry = addCustCountryComboBox.getValue();
         ObservableList<Division> divisions = DivisionDAO.getDivisionsByCountry(selectedCountry.getCountryID());
-        newCustStateComboBox.setItems(divisions);
+        addCustStateComboBox.setItems(divisions);
     }
 
     //Example 14-1 Creating a Combo Box with an Observable List
@@ -163,7 +163,7 @@ public class addCustController implements Initializable {
         String address = newCustAddress1TextField.getText();
         String postalCode = newCustZipTextField.getText();
         String phone = newCustomerPhoneTextField.getText();
-        Division division = newCustStateComboBox.getValue();
+        Division division = addCustStateComboBox.getValue();
 
         if (name.isEmpty() || address.isEmpty() || postalCode.isEmpty() ||
                 phone.isEmpty() || division == null) {
