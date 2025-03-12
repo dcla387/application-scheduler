@@ -33,3 +33,9 @@ Sun Mar 09 17:08:37 MDT 2025 - ✔ Good Login: test
 Sun Mar 09 17:36:33 MDT 2025 - ✔ Good Login: test
 Sun Mar 09 17:38:31 MDT 2025 - ✔ Good Login: test
 Sun Mar 09 17:46:01 MDT 2025 - ✔ Good Login: test
+Sun Mar 09 17:49:00 MDT 2025 - ✔ Good Login: test
+Sun Mar 09 17:50:37 MDT 2025 - ✔ Good Login: test
+Sun Mar 09 20:04:47 MDT 2025 - 🛑  FAILED Login: user Name: Phoenix  Password: bananana
+Sun Mar 09 20:05:18 MDT 2025 - ✔ Good Login: test
+Sun Mar 09 20:07:43 MDT 2025 - ✔ Good Login: admin
+Sun Mar 09 20:09:14 MDT 2025 - ✔ Good Login: test
