@@ -55,6 +55,23 @@ public class CustomerDAO {
 
         }
 
+    public static boolean addCustomer(String name, String address, String postalCode, String phone, int divisionId) {
+        try {
+            Connection connection = JDBC.getConnection();
+            String newCust = "Insert Into customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) " +
+                    "Values  ('" + name + "', Address = '" + address + "', Postal_Code = '" + postalCode + "', Phone = '" + phone + "', Division_ID = " + divisionId + ")";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(newCust);
+            int rowsInserted = preparedStatement.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException error) {
+            System.out.println("Error in Adding New Customer " + error.getMessage());
+            return false;
+        }
+
+
+    }
+
         public static String getDivisionName(Connection connection, int divisionId){
             try {
                 String divLookup = "select Division from first_level_divisions where Division_ID = " + divisionId;

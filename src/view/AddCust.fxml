@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modCustController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addCustController">
     <children>
 
         <Label alignment="CENTER" layoutY="14.0" text="Add New Customer" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -57,7 +57,7 @@
 
 
                     <HBox alignment="CENTER" spacing="20.0" GridPane.columnSpan="3" GridPane.rowIndex="7">
-                        <Button fx:id="newCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Save" />
+                        <Button fx:id="newCustModButton" mnemonicParsing="false" onAction="#onClickToSaveCustomer" prefHeight="25.0" prefWidth="62.0" text="Save" />
                         <Button fx:id="newCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                     </HBox>
 

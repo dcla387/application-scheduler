@@ -52,7 +52,7 @@
 
 
                     <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <ComboBox fx:id="addCustCountryComboBox" onAction="#onCountrySelected" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="addCustCountryComboBox" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
 
 
@@ -60,6 +60,7 @@
                         <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
                         <Button fx:id="addCustCancelButton" mnemonicParsing="false" onAction="#onClickToCancelCustomer" prefHeight="25.0" prefWidth="68.0" text="Cancel" />
                     </HBox>
+
 
                 </GridPane>
             </children>
