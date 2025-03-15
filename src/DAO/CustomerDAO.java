@@ -59,7 +59,7 @@ public class CustomerDAO {
         try {
             Connection connection = JDBC.getConnection();
             String newCust = "Insert Into customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) " +
-                    "Values  ('" + name + "', Address = '" + address + "', Postal_Code = '" + postalCode + "', Phone = '" + phone + "', Division_ID = " + divisionId + ")";
+                    "VALUES ('" + name + "', '" + address + "', '" + postalCode + "', '" + phone + "', " + divisionId + ")";
 
             PreparedStatement preparedStatement = connection.prepareStatement(newCust);
             int rowsInserted = preparedStatement.executeUpdate();

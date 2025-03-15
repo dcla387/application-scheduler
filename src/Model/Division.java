@@ -17,7 +17,7 @@ public class Division {
 
 
     public String getName() { return name;}
-    public int getCountryId() { return countryId;}
+    public int getCountryID() { return countryId;}
 
 
 

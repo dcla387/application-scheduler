@@ -102,14 +102,14 @@ public class addCustController implements Initializable {
         Country customerCountry = CountryDAO.getCountryByDivisionId(divisionId);
 
         for (Country country : addCustCountryComboBox.getItems()) {
-            if (country.getCountryId() == customerCountry.getCountryId()) {
+            if (country.getCountryID() == customerCountry.getCountryID()) {
                 addCustCountryComboBox.setValue(country);
                 break;
             }
         }
 
 
-        ObservableList<Division> divisions = DivisionDAO.getDivisionsByCountry(customerCountry.getCountryId());
+        ObservableList<Division> divisions = DivisionDAO.getDivisionsByCountry(customerCountry.getCountryID());
         addCustStateComboBox.setItems(divisions);
 
 

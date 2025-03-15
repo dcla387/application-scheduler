@@ -10,9 +10,7 @@ public class Country {
         this.countryName = countryName;
     }
 
-    public int getCountryID() {
-        return countryID;
-    }
+
 
     public String getCountryName() {
         return countryName;
@@ -23,7 +21,7 @@ public class Country {
         return countryName;
     }
 
-    public int getCountryId() {
+    public int getCountryID() {
         return countryID;
     }
 }
