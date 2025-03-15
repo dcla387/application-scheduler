@@ -42,9 +42,9 @@ public class CountryDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int countryId = resultSet.getInt("Country_ID");
+                int countryID = resultSet.getInt("Country_ID");
 
-                divisionLookup = "select * from countries where Country_ID = " + countryId;
+                divisionLookup = "select * from countries where Country_ID = " + countryID;
                 preparedStatement = connection.prepareStatement(divisionLookup);
                 resultSet = preparedStatement.executeQuery();
 

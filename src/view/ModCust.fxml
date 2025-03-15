@@ -39,22 +39,21 @@
                     <Label fx:id="addCustAddLine1" text="Address" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                     <TextField fx:id="addCustAddress1TextField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                    <Label fx:id="addCustZip" text="Zip" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                    <TextField fx:id="addCustZipTextField" promptText="Zip/Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
 
                     <Label fx:id="addCustomerPhoneLabel" text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                     <TextField fx:id="addCustomerPhoneTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
 
+
+                    <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="addCustCountryComboBox" onAction="#onCountrySelected" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
                     <Label fx:id="addCustState" text="State/Province" GridPane.columnIndex="0" GridPane.rowIndex="5" />
                     <ComboBox fx:id="addCustStateComboBox" prefHeight="25.0" prefWidth="219.0" promptText="State/Province" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
-                    <Label fx:id="addCustCountry" text="Country" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <ComboBox fx:id="addCustCountryComboBox" prefHeight="25.0" prefWidth="219.0" promptText="Country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-
+                    <Label fx:id="addCustZip" text="Zip" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                    <TextField fx:id="addCustZipTextField" promptText="Zip/Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                     <HBox alignment="CENTER" spacing="20.0" GridPane.columnSpan="3" GridPane.rowIndex="7">
                         <Button fx:id="addCustModButton" mnemonicParsing="false" onAction="#onClickToModCustomer" prefHeight="25.0" prefWidth="62.0" text="Modify" />
