@@ -68,9 +68,20 @@ public class CustomerDAO {
             System.out.println("Error in Adding New Customer " + error.getMessage());
             return false;
         }
-
-
     }
+        public static boolean delCustomer(int customerId) {
+            try {
+                Connection connection = JDBC.getConnection();
+                String delete = "Delete From customers Where Customer_ID = " + customerId;
+                PreparedStatement preparedStatement = connection.prepareStatement(delete);
+                int rowsDeleted = preparedStatement.executeUpdate();
+                return rowsDeleted > 0;
+            } catch (SQLException error) {
+                System.out.println("Error in Deleting Customer " + error.getMessage());
+                return false;
+            }
+        }
+
 
         public static String getDivisionName(Connection connection, int divisionId){
             try {

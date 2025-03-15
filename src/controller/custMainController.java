@@ -122,5 +122,28 @@ public class custMainController implements Initializable {
         stage.show();
     }
 
+    public void onClickToDelCust(ActionEvent event) throws IOException {
+
+        Customer selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Selet a Customer");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setContentText("Are you sure you want to Delete this Customer");
+
+
+        if (confirm.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
+
+            CustomerDAO.delCustomer(selectedCustomer.getCustomerId());
+
+            customerTableView.setItems(CustomerDAO.getAllCustomers());
+        }
+
+    }
 
 }
