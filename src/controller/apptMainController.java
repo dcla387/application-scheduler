@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,6 +23,57 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 public class apptMainController implements Initializable {
+
+    @FXML
+    private TableView<Appointment> appointmentTableView;
+
+    @FXML
+    private TableColumn<Appointment, Integer> appointmentIdColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> titleColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> descriptionColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> locationColumn;
+
+    @FXML
+    private TableColumn<Appointment, Integer> contactColumn;
+
+    @FXML
+    private TableColumn<Appointment, String > typeColumn;
+
+    @FXML
+    private TableColumn<Appointment, LocalDateTime> startColumn;
+
+    @FXML
+    private TableColumn<Appointment, LocalDateTime> endColumn;
+
+    @FXML
+    private TableColumn<Appointment, Integer> customerIdColumn;
+
+    @FXML
+    private TableColumn<Appointment, Integer> userIdColumn;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+        ObservableList<Appointment> allAppointments = AppointmentDAO.getAllAppointments();
+        appointmentTableView.setItems(allAppointments);
+
+    }
 
     public void onActionExitAppt(ActionEvent event) {System.exit(0);}
 
@@ -67,8 +119,5 @@ public class apptMainController implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 }
