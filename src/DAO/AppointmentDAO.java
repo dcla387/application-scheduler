@@ -22,7 +22,7 @@ public class AppointmentDAO {
                         resultSet.getString("Title"),
                         resultSet.getString("Description"),
                         resultSet.getString("Location"),
-                        resultSet.getString("Contact_Name"),
+                        resultSet.getString("Contact_ID"),
                         resultSet.getString("Type"),
                         resultSet.getTimestamp("Start").toLocalDateTime(),
                         resultSet.getTimestamp("End").toLocalDateTime(),
