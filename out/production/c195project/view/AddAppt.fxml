@@ -29,7 +29,7 @@
                     <Label text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                     <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <TextField fx:id="customerSearchField" promptText="Search Customer" />
-                        <ComboBox fx:id="customerComboBox" prefWidth="250" />
+
                     </VBox>
 
                     <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
