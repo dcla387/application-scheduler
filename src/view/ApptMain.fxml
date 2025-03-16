@@ -14,18 +14,18 @@
       </Text>
       <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
       <Button fx:id="MainApptScreen" layoutX="882.0" layoutY="48.0" mnemonicParsing="false" onAction="#toMainButtonClick" prefHeight="35.0" prefWidth="95.0" text="Main" AnchorPane.rightAnchor="40.0" />
-      <TableView layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="1118.0">
+      <TableView fx:id="appointmentTableView" layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="1118.0">
         <columns>
-          <TableColumn prefWidth="105.0" text="Appt ID" />
-          <TableColumn prefWidth="45.0" text="Title" />
-            <TableColumn prefWidth="200.0" text="Description" />
-            <TableColumn prefWidth="150.0" text="Location" />
-            <TableColumn prefWidth="75.0" text="Contact" />
-            <TableColumn prefWidth="140.0" text="Type " />
-            <TableColumn prefWidth="125.0" text="Start Date / Time" />
-            <TableColumn prefWidth="125.0" text="End Date / Time" />
-            <TableColumn prefWidth="75.0" text="User ID" />
-            <TableColumn prefWidth="75.0" text="Customer ID" />
+          <TableColumn fx:id="appointmentIdColumn" prefWidth="105.0" text="Appointment ID" />
+          <TableColumn fx:id="titleColumn" prefWidth="45.0" text="Title" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description" />
+            <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Location" />
+            <TableColumn fx:id="contactColumn" prefWidth="75.0" text="Contact" />
+            <TableColumn fx:id="typeColumn" prefWidth="140.0" text="Type " />
+            <TableColumn fx:id="startColumn" prefWidth="125.0" text="Start Date / Time" />
+            <TableColumn fx:id="endColumn" prefWidth="125.0" text="End Date / Time" />
+            <TableColumn fx:id="userIdColumn" prefWidth="75.0" text="User ID" />
+            <TableColumn fx:id="customerIdColumn" prefWidth="75.0" text="Customer ID" />
         </columns>
       </TableView>
       <Text layoutX="401.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort Appointments by:" textAlignment="CENTER" wrappingWidth="140.13671875">
