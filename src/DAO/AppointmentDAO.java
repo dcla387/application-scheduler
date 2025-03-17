@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class AppointmentDAO {
 
@@ -40,7 +41,7 @@ public class AppointmentDAO {
         return appointmentList;
     }
 
-    public static void addAppointment(String title, String description, String location, int contactId, String type, Timestamp start, Timestamp end, int customerId, int userId) {
+    public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, User_ID )" +
