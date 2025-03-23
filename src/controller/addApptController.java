@@ -90,15 +90,15 @@ public class addApptController implements Initializable {
 
 
     private void populateTimeComboBoxes() {
-        LocalTime start = LocalTime.of(8, 0);
-        LocalTime end = LocalTime.of(22, 0);
+        LocalTime start = LocalTime.of(0, 0);
+        LocalTime end = LocalTime.of(23, 45);
 
 
         while (!start.isAfter(end)) {
             String timestr = start.toString();
             startTimeComboBox.getItems().add(timestr);
             endTimeComboBox.getItems().add(timestr);
-            start = start.plusMinutes(30);
+            start = start.plusMinutes(15);
         }
     }
 

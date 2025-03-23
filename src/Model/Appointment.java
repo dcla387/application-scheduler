@@ -32,6 +32,7 @@ public class Appointment {
     }
 
     public int getAppointmentId(){
+
         return appointmentId;
     }
 
@@ -45,11 +46,13 @@ public class Appointment {
     }
 
     public String getLocation(){
+
         return location;
     }
 
 
     public String getContactName(){
+
         return contactName;
     }
 
@@ -73,4 +76,43 @@ public class Appointment {
         return userId;
     }
 
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

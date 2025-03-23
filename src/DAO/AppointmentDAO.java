@@ -18,12 +18,16 @@ public class AppointmentDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+
+                int contactId = resultSet.getInt("Contact_ID");
+                String contactName = ContactDAO.getContactNameFromId(contactId);
+
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
                         resultSet.getString("Title"),
                         resultSet.getString("Description"),
                         resultSet.getString("Location"),
-                        resultSet.getString("Contact_ID"),
+                        contactName,
                         resultSet.getString("Type"),
                         resultSet.getTimestamp("Start").toLocalDateTime(),
                         resultSet.getTimestamp("End").toLocalDateTime(),

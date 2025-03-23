@@ -35,4 +35,20 @@ public class ContactDAO {
         }
         return contactList;
     }
+
+    public static String getContactNameFromId(int contactId) {
+
+        ObservableList<Contact> contacts = getAllContacts();
+
+        for (Contact contact : contacts) {
+            if (contact.getContactId() == contactId) {
+                return contact.getContactName();
+            }
+
+        }
+        return "Error";
+
+
+    }
 }
+
