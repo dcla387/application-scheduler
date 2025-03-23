@@ -73,7 +73,7 @@ public class addApptController implements Initializable {
     private ComboBox<String> endTimeComboBox;
 
     @FXML
-    private TextField userIDTextField;
+    private ComboBox userIDComboBox;
 
 
     @Override
@@ -81,7 +81,13 @@ public class addApptController implements Initializable {
         customerComboBox.setItems(CustomerDAO.getAllCustomers());
         contactComboBox.setItems(ContactDAO.getAllContacts());
         populateTimeComboBoxes();
+
+        userIDComboBox.getItems().addAll(1, 2);
+        userIDComboBox.setValue(1);
+
     }
+
+
 
     private void populateTimeComboBoxes() {
         LocalTime start = LocalTime.of(8, 0);
@@ -132,16 +138,7 @@ public class addApptController implements Initializable {
             return;
         }
 
-        int userID;
-        try {
-            userID = Integer.parseInt(userIDTextField.getText());
-        } catch (NumberFormatException error) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("There is an Error");
-            alert.setContentText("The UserID must be numerical");
-            alert.showAndWait();
-            return;
-        }
+        int userID = (Integer) userIDComboBox.getValue();
 
         LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
         LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
