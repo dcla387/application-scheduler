@@ -41,10 +41,14 @@ public class AppointmentDAO {
         return appointmentList;
     }
 
-    public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
+   public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
-            String get = "Insert Into appointments (Title, Description, Location, Contact_ID, User_ID )" +
+
+            String startStr = start.toString().replace('T', ' ');
+            String endStr = end.toString().replace('T', ' ');
+
+            String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
             "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + start + "', '" + end + "', " + customerId + ", " + userId + ")";
 
             PreparedStatement preparedStatement = connection.prepareStatement(get);
@@ -55,7 +59,7 @@ public class AppointmentDAO {
         }
     }
 
-    public static void updateAppointment(int appointmentId, String title, String description, String location, int contactId, String type, Timestamp start, Timestamp end, int customerId, int userId) {
+    /*public static void addAppointment(int appointmentId, String title, String description, String location, int contactId, String type, Timestamp start, Timestamp end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
             String update = "Update appointments Set " +
@@ -75,12 +79,12 @@ public class AppointmentDAO {
         } catch (SQLException error) {
             System.out.println("Error: " + error.getMessage());
         }
-    }
+    }*/
 
     public static void deleteAppointment(int appointmentId) {
         try {
             Connection connection = JDBC.getConnection();
-            String delete = "Delete From appointemnts Where Appointment_ID = " + appointmentId;
+            String delete = "Delete From appointments Where Appointment_ID = " + appointmentId;
             PreparedStatement preparedStatement = connection.prepareStatement(delete);
             preparedStatement.executeUpdate();
         } catch (SQLException error) {
