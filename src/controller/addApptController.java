@@ -91,7 +91,7 @@ public class addApptController implements Initializable {
 
     private void populateTimeComboBoxes() {
         LocalTime start = LocalTime.of(0, 0);
-        LocalTime end = LocalTime.of(23, 45);
+        LocalTime end = LocalTime.of(23, 30);
 
 
         while (!start.isAfter(end)) {
