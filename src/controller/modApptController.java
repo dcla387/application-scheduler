@@ -1,12 +1,10 @@
 package controller;
 
 import DAO.AppointmentDAO;
-import DAO.ContactDAO;
 import DAO.CustomerDAO;
-import Model.Contact;
-import Model.Customer;
-import Model.Appointment;
-
+import Model.*;
+import DAO.CountryDAO;
+import DAO.DivisionDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,28 +15,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import javafx.collections.ObservableList;
-import org.w3c.dom.Text;
 
 import java.time.LocalDate;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import java.awt.*;
-import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class modApptController implements Initializable {
 
     @FXML
     private ComboBox<Customer> customerComboBox;
+
+    @FXML
+    private TextField addCustNameTextField;
 
     @FXML
     private TextField apptIDTextField;
@@ -78,9 +74,7 @@ public class modApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerComboBox.setItems(CustomerDAO.getAllCustomers());
-        contactComboBox.setItems(ContactDAO.getAllContacts());
-        populateTimeComboBoxes();
+
 
         userIDComboBox.getItems().addAll(1, 2);
         userIDComboBox.setValue(1);
@@ -197,4 +191,9 @@ public class modApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void initData(Appointment selectedAppointment) {
+    }
+
+
 }

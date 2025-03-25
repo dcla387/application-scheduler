@@ -97,8 +97,6 @@ public class custMainController implements Initializable {
     public void onClickToModCust(ActionEvent event) throws IOException {
 
 
-
-
         Customer selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer == null){

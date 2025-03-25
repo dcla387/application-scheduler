@@ -3,6 +3,7 @@ package controller;
 import Model.Appointment;
 import DAO.AppointmentDAO;
 
+import Model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
@@ -109,12 +111,29 @@ public class apptMainController implements Initializable {
     }
 
     public void onClickToModAppt(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ModAppt.fxml"));
+
+
+
+
+        Appointment selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedAppointment == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Selet an Appointment");
+            alert.showAndWait();
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModAppt.fxml"));
+        Parent root = loader.load();
+
+        modApptController controller = loader.getController();
+        controller.initData(selectedAppointment);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
         Scene scene = new Scene(root);
-        stage.setTitle("Mod Appt Page");
+        stage.setTitle("Appt Cust Page");
         stage.setScene(scene);
         stage.show();
     }

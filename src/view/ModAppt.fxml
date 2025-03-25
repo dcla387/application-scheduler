@@ -25,11 +25,10 @@
                         <ColumnConstraints />
                     </columnConstraints>
 
-                    <Label text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <ComboBox fx:id="customerComboBox" prefWidth="250" promptText="Select Customer" />
 
-                    </VBox>
+
+                    <Label fx:id="addCustName" text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="addCustNameTextField" promptText="Customer" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                     <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                     <TextField fx:id="apptIDTextField" disable="true" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="1" />
