@@ -70,6 +70,7 @@ public class modApptController implements Initializable {
 
     @FXML
     private ComboBox userIDComboBox;
+    private Object selectedAppointment;
 
 
     @Override
@@ -183,6 +184,19 @@ public class modApptController implements Initializable {
     }
 
     public void onClickModAppt(ActionEvent event) throws IOException {
+
+        String title = titleTextField.getText();
+        String description = descriptionTextField.getText();
+        String location = locationTextField.getText();
+        Contact contact = contactComboBox.getValue();
+        String type = typeTextField.getText();
+        LocalDate startDate = startDatePicker.getValue();
+        String startTime = startTimeComboBox.getValue();
+        LocalDate endDate = endDatePicker.getValue();
+        String endTime = endTimeComboBox.getValue();
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
@@ -192,7 +206,19 @@ public class modApptController implements Initializable {
         stage.show();
     }
 
-    public void initData(Appointment selectedAppointment) {
+    public void initData(Appointment appointment) {
+        this.selectedAppointment = appointment;
+
+        addCustNameTextField.setText(appointment.getCustomerName());
+        apptIDTextField.setText(String.valueOf(selectedAppointment.getAppointmentId()));
+        titleTextField.setText(appointment.getTitle());
+        descriptionTextField.setText(appointment.getDescription());
+        locationTextField.setText(appointment.getLocation());
+        typeTextField.setText(appointment.getType());
+
+
+        );
+
     }
 
 
