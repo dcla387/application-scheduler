@@ -41,15 +41,26 @@ public class custMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Set up table columns to display the correct Customer properties
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         divisionColumn.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        // Load customer data
+
         loadCustomerData();
+    }
+
+    //Lamba expression usage
+    private void loadCustomerAlpha() {
+
+        ObservableList<Customer> customerList = CustomerDAO.getAllCustomers();
+
+        customerList.sort((c1, c2) -> c1.getCustomerName().compareTo(c2.getCustomerName()));
+
+        customerTableView.setItems(customerList);
+
     }
 
     private void loadCustomerData(){

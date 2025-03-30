@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.stream.Collectors;
 
 public class CustomerDAO {
     public static ObservableList<Customer> getAllCustomers() {
@@ -101,12 +102,20 @@ public class CustomerDAO {
 
     public static String getCustomerNameFromId(int customerId) {
         ObservableList<Customer> customers = getAllCustomers();
+
+        return customers.stream()
+                .filter(customer -> customer.getCustomerId() == customerId)
+                .map(Customer::getCustomerName)
+                .findFirst()
+                .orElse("Error");
+
+        /*Lambda Expression swap out
         for (Customer customer : customers) {
             if (customer.getCustomerId() == customerId) {
                 return customer.getCustomerName();
             }
         }
-        return "Error";
+        return "Error"; */
     }
 
 
