@@ -83,7 +83,8 @@ public class apptMainController implements Initializable {
         allAppointments = AppointmentDAO.getAllAppointments();
         appointmentTableView.setItems(allAppointments);
 
-        customerComboBox.getItems().add("all Customers");
+
+        customerComboBox.getItems().add("All Customers");
 
         for (Customer customer : CustomerDAO.getAllCustomers()) {
             customerComboBox.getItems().add(customer.getCustomerName());

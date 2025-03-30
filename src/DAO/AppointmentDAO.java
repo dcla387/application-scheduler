@@ -67,9 +67,12 @@ public class AppointmentDAO {
         }
     }
 
-    /*public static void addAppointment(int appointmentId, String title, String description, String location, int contactId, String type, Timestamp start, Timestamp end, int customerId, int userId) {
+    public static void updateAppointment(int appointmentId, String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
+            String startStr = start.toString().replace('T', ' ');
+            String endStr = end.toString().replace('T', ' ');
+
             String update = "Update appointments Set " +
                     "Title = '" + title + "', " +
                     "Description = '" + description + "', " +
@@ -87,7 +90,7 @@ public class AppointmentDAO {
         } catch (SQLException error) {
             System.out.println("Error: " + error.getMessage());
         }
-    }*/
+    }
 
     public static void deleteAppointment(int appointmentId) {
         try {

@@ -130,7 +130,7 @@ public class modApptController implements Initializable {
         endDatePicker.setValue(appointment.getEnd().toLocalDate());
 
         startTimeComboBox.setValue(appointment.getStart().toLocalTime().toString());
-        startTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
+        endTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
 
         userIDComboBox.setValue(appointment.getUserId());
 
@@ -234,6 +234,45 @@ public class modApptController implements Initializable {
         String startTime = startTimeComboBox.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String endTime = endTimeComboBox.getValue();
+
+        if (title.isEmpty() || description.isEmpty() || location.isEmpty() ||
+                contact == null || type.isEmpty() || startDate == null ||
+                startTime == null || endDate == null || endTime == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Fill in All Fields to Save");
+            alert.showAndWait();
+            return;
+        }
+
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
+        LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
+
+        if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("End time must be after start time");
+            alert.showAndWait();
+            return;
+        }
+
+        int appointmentId = selectedAppointment.getAppointmentId();
+        int customerId = selectedAppointment.getCustomerId();
+        int userId = (Integer) userIDComboBox.getValue();
+
+        AppointmentDAO.updateAppointment(
+                appointmentId,
+                title,
+                description,
+                location,
+                contact.getContactId(),
+                type,  // This should now get updated
+                startDateTime,
+                endDateTime,
+                customerId,
+                userId
+        );
+
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
