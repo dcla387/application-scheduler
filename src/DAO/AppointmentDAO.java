@@ -279,6 +279,48 @@ public class AppointmentDAO {
         }
 
     }
+
+    public static ObservableList<Appointment> getAppointmentsByCustomerId(int customerId) {
+
+        ObservableList<Appointment> filteredAppointments = FXCollections.observableArrayList();
+
+        try {
+
+            Connection connection = JDBC.getConnection();
+            String search = "Select * From appointments Where Customer_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(search);
+            preparedStatement.setInt(1, customerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int contactId = resultSet.getInt("Contact_ID");
+                String contactName = ContactDAO.getContactNameFromId(contactId);
+                String customerName = CustomerDAO.getCustomerNameFromId(customerId);
+
+                Appointment appointment = new Appointment(
+                        resultSet.getInt("Appointment_ID"),
+                        customerName,
+                        resultSet.getString("Title"),
+                        resultSet.getString("Description"),
+                        resultSet.getString("Location"),
+                        contactName,
+                        resultSet.getString("Type"),
+                        resultSet.getTimestamp("Start").toLocalDateTime(),
+                        resultSet.getTimestamp("End").toLocalDateTime(),
+                        customerId,
+                        resultSet.getInt("User_Id")
+
+                );
+                filteredAppointments.add(appointment);
+            }
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+            return filteredAppointments;
+
+
+
+    }
 }
 
 

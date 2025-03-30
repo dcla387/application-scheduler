@@ -1,7 +1,9 @@
 package controller;
 
+import DAO.AppointmentDAO;
 import DAO.CustomerDAO;
 import DAO.JDBC;
+import Model.Appointment;
 import Model.Customer;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,7 +68,7 @@ public class custMainController implements Initializable {
     private void loadCustomerData(){
         ObservableList<Customer> customerList = CustomerDAO.getAllCustomers();
 
-        //Lambda
+        //Lambda - sort customers on Table View alphabetically
 
         customerList.sort((c1, c2) -> c1.getCustomerName().compareTo(c2.getCustomerName()));
 
@@ -147,13 +149,33 @@ public class custMainController implements Initializable {
             return;
         }
 
+        int customerId = selectedCustomer.getCustomerId();
+        ObservableList<Appointment> customerAppointments = AppointmentDAO.getAppointmentsByCustomerId(customerId);
+
+        if (!customerAppointments.isEmpty()) {
+            Alert appointmentAlert = new Alert(Alert.AlertType.WARNING);
+            appointmentAlert.setTitle("This is a Warning");
+            appointmentAlert.setHeaderText("Selected Customer has Assocaited Appointments");
+            appointmentAlert.setContentText("The appointments will be canceld if this customer is deleted. Do you want to continue?");
+
+            if(appointmentAlert.showAndWait().get() !=javafx.scene.control.ButtonType.OK) {
+                return;
+            }
+        }
+
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setContentText("Are you sure you want to Delete this Customer");
 
 
         if (confirm.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
 
-            CustomerDAO.delCustomer(selectedCustomer.getCustomerId());
+            if(!customerAppointments.isEmpty()) {
+                for (Appointment appointment : customerAppointments) {
+                    AppointmentDAO.deleteAppointment(appointment.getAppointmentId());
+                }
+            }
+
+            CustomerDAO.delCustomer(customerId);
 
             customerTableView.setItems(CustomerDAO.getAllCustomers());
         }
