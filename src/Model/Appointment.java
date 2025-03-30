@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 public class Appointment {
 
     private int appointmentId;
+
+    private String customerName;
     private String title;
     private String description;
     private String location;
@@ -17,9 +19,10 @@ public class Appointment {
     private int customerId;
     private int userId;
 
-    public Appointment(int appointmentId, String title, String description, String location, String contactName, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId){
+    public Appointment(int appointmentId, String customerName, String title, String description, String location, String contactName, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId){
 
         this.appointmentId = appointmentId;
+        this.customerName = customerName;
         this.title = title;
         this.description = description;
         this.location = location;
@@ -114,5 +117,9 @@ public class Appointment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
     }
 }

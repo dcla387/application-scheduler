@@ -1,10 +1,7 @@
 package controller;
 
-import DAO.AppointmentDAO;
-import DAO.CustomerDAO;
+import DAO.*;
 import Model.*;
-import DAO.CountryDAO;
-import DAO.DivisionDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +73,7 @@ public class modApptController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        contactComboBox.setItems(ContactDAO.getAllContacts());
 
         userIDComboBox.getItems().addAll(1, 2);
         userIDComboBox.setValue(1);
@@ -210,14 +208,11 @@ public class modApptController implements Initializable {
         this.selectedAppointment = appointment;
 
         addCustNameTextField.setText(appointment.getCustomerName());
-        apptIDTextField.setText(String.valueOf(selectedAppointment.getAppointmentId()));
+        apptIDTextField.setText(String.valueOf(appointment.getAppointmentId()));
         titleTextField.setText(appointment.getTitle());
         descriptionTextField.setText(appointment.getDescription());
         locationTextField.setText(appointment.getLocation());
         typeTextField.setText(appointment.getType());
-
-
-        );
 
     }
 
