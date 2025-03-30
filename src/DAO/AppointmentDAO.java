@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AppointmentDAO {
 
@@ -49,7 +51,7 @@ public class AppointmentDAO {
         return appointmentList;
     }
 
-   public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
+    public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
 
@@ -57,7 +59,7 @@ public class AppointmentDAO {
             String endStr = end.toString().replace('T', ' ');
 
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
-            "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + start + "', '" + end + "', " + customerId + ", " + userId + ")";
+                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + start + "', '" + end + "', " + customerId + ", " + userId + ")";
 
             PreparedStatement preparedStatement = connection.prepareStatement(get);
             preparedStatement.executeUpdate();
@@ -116,6 +118,37 @@ public class AppointmentDAO {
         return filteredAppointments;
 
     }
+
+    public static Map<String, Map<String, Integer>> getAppointmentsByMonthAndType() {
+        Map<String, Map<String, Integer>> reportData = new HashMap<>();
+
+        try {
+            Connection connection = JDBC.getConnection();
+            String get = "Select MONTHNAME(Start) as month_name, type, COUNT(*) as count " +
+                    "From Appointments " +
+                    "Group by MONTHNAME(Start), Type " +
+                    "Order by MONTH(Start), Type";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(get);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String monthName = resultSet.getString("month_name");
+                String type = resultSet.getString("type");
+
+                int count = resultSet.getInt("count");
+
+                if (!reportData.containsKey(monthName)) {
+                    reportData.put(monthName, new HashMap<>());
+                }
+                reportData.get(monthName).put(type, count);
+            }
+        } catch (SQLException error) {
+            System.out.println("Report has error in retrieving Data: " + error.getMessage());
+        }
+        return reportData;
+    }
+
 }
 
 

@@ -14,8 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.Map;
 
 public class reportController {
 
@@ -32,45 +36,43 @@ public class reportController {
     @FXML
     private Button backToMain;
 
-    private void onClickTypeMonthReport(ActionEvent event){
+    @FXML
+    private void onClickTypeMonthReport(ActionEvent event) {
 
         StringBuilder report = new StringBuilder();
         report.append("Appointment Types by Month\n\n");
 
-        try {
+        Map<String, Map<String, Integer>> reportData = AppointmentDAO.getAppointmentsByMonthAndType();
 
-            Connection connection = JDBC.getConnection();
+        for (String month : reportData.keySet()) {
+            report.append("\nMonth: ").append(month).append("\n");
+            report.append("************************\n");
 
-            String getInfo = "Select MONTHNAME(Start) as Month, type, COUNT(*) as COUNT " +
-                            "From Appointments " +
-                            "Group by MONTHNAME(Start), Type " +
-                            "Order by MONTH(Start), Type ";
+            Map<String, Integer> typeData = reportData.get(month);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(getInfo);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            String currentMonth = "";
-
-            while (resultSet.next()){
-
-                String month = resultSet.getString("Month");
-                String type = resultSet.getString( "Type");
-                int count = resultSet.getInt("Count");
-
-                if(!month.equals(currentMonth));
-                    currentMonth = month;
-                    report.append("\nMonth: ").append(month).append("\n");
-
+            for (String type : typeData.keySet()) {
+                int count = typeData.get(type);
+                report.append(type).append(" : ").append(count).append("\n");
 
             }
-
         }
 
 
 
+
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Appointments Report");
+        alert.setHeaderText("by Month and by Type with count");
+        TextArea textArea = new TextArea(report.toString());
+        textArea.setEditable(false);
+        textArea.setPrefHeight(400);
+        textArea.setPrefWidth(400);
+
+        alert.getDialogPane().setContent(textArea);
+        alert.showAndWait();
+
     }
-
-
 
 
 
