@@ -167,5 +167,40 @@ public class apptMainController implements Initializable {
         stage.show();
     }
 
+    public void onClickToDelAppt(ActionEvent event) {
+
+        Appointment selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedAppointment == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Must Select An Appointment");
+            alert.showAndWait();
+            return;
+        }
+
+        int appointmentId = selectedAppointment.getAppointmentId();
+        String appointmentType = selectedAppointment.getType();
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setContentText("Are you SURE you want to Delete this Appointment?");
+
+        if (confirm.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
+
+            AppointmentDAO.deleteAppointment(appointmentId);
+
+            Alert doneAlert = new Alert(Alert.AlertType.INFORMATION);
+            doneAlert.setTitle("This Appointment was Deleted");
+            doneAlert.setHeaderText("Successful");
+            doneAlert.setContentText("Appointment ID: " + appointmentId + "\nType: " + appointmentType);
+            doneAlert.showAndWait();
+
+            allAppointments = AppointmentDAO.getAllAppointments();
+            appointmentTableView.setItems(allAppointments);
+
+            filterAppointmentsByCustomer();
+        }
+
+
+    }
 
 }
