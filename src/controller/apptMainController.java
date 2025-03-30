@@ -112,9 +112,6 @@ public class apptMainController implements Initializable {
 
     public void onClickToModAppt(ActionEvent event) throws IOException {
 
-
-
-
         Appointment selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
 
         if (selectedAppointment == null){

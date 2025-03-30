@@ -26,7 +26,7 @@ public class Appointment {
         this.title = title;
         this.description = description;
         this.location = location;
-        this.contactId = contactId;
+        /*this.contactId = contactId;*/
         this.contactName = contactName;
         this.type = type;
         this.start = start;

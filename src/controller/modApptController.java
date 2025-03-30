@@ -67,7 +67,7 @@ public class modApptController implements Initializable {
 
     @FXML
     private ComboBox userIDComboBox;
-    private Object selectedAppointment;
+    private Appointment selectedAppointment;
 
 
     @Override
