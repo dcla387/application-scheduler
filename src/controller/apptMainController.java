@@ -65,6 +65,8 @@ public class apptMainController implements Initializable {
     @FXML
     private ComboBox<String> customerComboBox;
 
+    private ObservableList<Appointment> allAppointments;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
@@ -78,8 +80,31 @@ public class apptMainController implements Initializable {
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
-        ObservableList<Appointment> allAppointments = AppointmentDAO.getAllAppointments();
+        allAppointments = AppointmentDAO.getAllAppointments();
         appointmentTableView.setItems(allAppointments);
+
+        customerComboBox.getItems().add("all Customers");
+
+        for (Customer customer : CustomerDAO.getAllCustomers()) {
+            customerComboBox.getItems().add(customer.getCustomerName());
+        }
+
+        customerComboBox.setValue("All Customers");
+
+        customerComboBox.setOnAction(actionEvent -> filterAppointmentsByCustomer());
+
+    }
+
+    private void filterAppointmentsByCustomer() {
+        String selectedCustomer = customerComboBox.getValue();
+
+        if (selectedCustomer == null || selectedCustomer.equals("All Customers")) {
+            appointmentTableView.setItems(allAppointments);
+        } else {
+            ObservableList<Appointment> filteredAppointments = AppointmentDAO.getAppointmentsByCustomerName(selectedCustomer);
+            appointmentTableView.setItems(filteredAppointments);
+        }
+
 
     }
 

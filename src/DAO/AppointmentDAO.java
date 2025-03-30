@@ -99,6 +99,20 @@ public class AppointmentDAO {
             System.out.println("Error: " + error.getMessage());
         }
     }
+
+    public static ObservableList<Appointment> getAppointmentsByCustomerName(String customerName) {
+
+        ObservableList<Appointment> filteredAppointments = FXCollections.observableArrayList();
+
+        ObservableList<Appointment> allAppointments = getAllAppointments();
+        for (Appointment appointment : allAppointments) {
+            if (appointment.getCustomerName().equals(customerName)) {
+                filteredAppointments.add(appointment);
+            }
+        }
+        return filteredAppointments;
+
+    }
 }
 
 
