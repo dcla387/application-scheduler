@@ -74,6 +74,7 @@ public class modApptController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         contactComboBox.setItems(ContactDAO.getAllContacts());
+        populateTimeComboBoxes();
 
         userIDComboBox.getItems().addAll(1, 2);
         userIDComboBox.setValue(1);
@@ -214,7 +215,29 @@ public class modApptController implements Initializable {
         locationTextField.setText(appointment.getLocation());
         typeTextField.setText(appointment.getType());
 
-    }
+        contactComboBox.setItems(ContactDAO.getAllContacts());
+        for (Contact contact : contactComboBox.getItems()) {
+            if (contact.getContactName().equals(appointment.getContactName())) {
+                contactComboBox.setValue(contact);
+                break;
+            }
 
+
+        }
+
+        private void populateTimeComboBoxes() {
+            LocalTime start = LocalTime.of(0, 0);
+            LocalTime end = LocalTime.of(23, 30);
+
+            while (!start.isAfter(end)) {
+                String timestr = start.toString();
+                startTimeComboBox.getItems().add(timestr);
+                endTimeComboBox.getItems().add(timestr);
+
+                start = start.plusMinutes(15);
+            }
+        }
+
+    }
 
 }
