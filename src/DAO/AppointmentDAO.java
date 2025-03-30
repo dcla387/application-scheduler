@@ -161,7 +161,7 @@ public class AppointmentDAO {
 
             while (resultSet.next()) {
 
-                contactNames.add(resultSet.getString("Contact Name"));
+                contactNames.add(resultSet.getString("Contact_Name"));
 
             }
             } catch (SQLException error) {
