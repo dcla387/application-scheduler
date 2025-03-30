@@ -82,7 +82,6 @@ public class modApptController implements Initializable {
     }
 
 
-
     private void populateTimeComboBoxes() {
         LocalTime start = LocalTime.of(0, 0);
         LocalTime end = LocalTime.of(23, 30);
@@ -94,6 +93,48 @@ public class modApptController implements Initializable {
             endTimeComboBox.getItems().add(timestr);
             start = start.plusMinutes(15);
         }
+    }
+
+    public void initData(Appointment appointment) {
+        this.selectedAppointment = appointment;
+
+        addCustNameTextField.setText(appointment.getCustomerName());
+        apptIDTextField.setText(String.valueOf(appointment.getAppointmentId()));
+        titleTextField.setText(appointment.getTitle());
+        descriptionTextField.setText(appointment.getDescription());
+        locationTextField.setText(appointment.getLocation());
+        typeTextField.setText(appointment.getType());
+
+
+        for (Contact contact : contactComboBox.getItems()) {
+            if (contact.getContactName().equals(appointment.getContactName())) {
+                contactComboBox.setValue(contact);
+                break;
+            }
+        }
+
+        /*private void populateTimeComboBoxes() {
+            LocalTime start = LocalTime.of(0, 0);
+            LocalTime end = LocalTime.of(23, 30);
+
+            while (!start.isAfter(end)) {
+                String timestr = start.toString();
+                startTimeComboBox.getItems().add(timestr);
+                endTimeComboBox.getItems().add(timestr);
+
+                start = start.plusMinutes(15);
+            }
+        }*/
+
+        startDatePicker.setValue(appointment.getStart().toLocalDate());
+        endDatePicker.setValue(appointment.getEnd().toLocalDate());
+
+        startTimeComboBox.setValue(appointment.getStart().toLocalTime().toString());
+        startTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
+
+        userIDComboBox.setValue(appointment.getUserId());
+
+
     }
 
     @FXML
@@ -118,7 +159,6 @@ public class modApptController implements Initializable {
         String startTime = startTimeComboBox.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String endTime = endTimeComboBox.getValue();
-
 
 
         if (title.isEmpty() || description.isEmpty() || location.isEmpty() ||
@@ -146,6 +186,8 @@ public class modApptController implements Initializable {
             return;
         }
 
+        int appointmentId = selectedAppointment.getAppointmentId();
+
         AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime,
                 customer.getCustomerId(), userID);
 
@@ -158,7 +200,6 @@ public class modApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     public void onClickToCancelAppointment(ActionEvent event) throws IOException {
@@ -195,7 +236,6 @@ public class modApptController implements Initializable {
         String endTime = endTimeComboBox.getValue();
 
 
-
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
@@ -205,39 +245,5 @@ public class modApptController implements Initializable {
         stage.show();
     }
 
-    public void initData(Appointment appointment) {
-        this.selectedAppointment = appointment;
-
-        addCustNameTextField.setText(appointment.getCustomerName());
-        apptIDTextField.setText(String.valueOf(appointment.getAppointmentId()));
-        titleTextField.setText(appointment.getTitle());
-        descriptionTextField.setText(appointment.getDescription());
-        locationTextField.setText(appointment.getLocation());
-        typeTextField.setText(appointment.getType());
-
-        contactComboBox.setItems(ContactDAO.getAllContacts());
-        for (Contact contact : contactComboBox.getItems()) {
-            if (contact.getContactName().equals(appointment.getContactName())) {
-                contactComboBox.setValue(contact);
-                break;
-            }
-
-
-        }
-
-        private void populateTimeComboBoxes() {
-            LocalTime start = LocalTime.of(0, 0);
-            LocalTime end = LocalTime.of(23, 30);
-
-            while (!start.isAfter(end)) {
-                String timestr = start.toString();
-                startTimeComboBox.getItems().add(timestr);
-                endTimeComboBox.getItems().add(timestr);
-
-                start = start.plusMinutes(15);
-            }
-        }
 
     }
-
-}
