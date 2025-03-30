@@ -22,8 +22,12 @@ public class AppointmentDAO {
                 int contactId = resultSet.getInt("Contact_ID");
                 String contactName = ContactDAO.getContactNameFromId(contactId);
 
+                int customerId = resultSet.getInt("Customer_ID");
+                String customerName = CustomerDAO.getCustomerNameFromId(customerId);
+
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
+                        customerName,
                         resultSet.getString("Title"),
                         resultSet.getString("Description"),
                         resultSet.getString("Location"),

@@ -26,12 +26,13 @@
                     </columnConstraints>
 
 
+                    <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="apptIDTextField" disable="true" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <Label fx:id="addCustName" text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <TextField fx:id="addCustNameTextField" promptText="Customer" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <Label text="Appointment ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                    <TextField fx:id="apptIDTextField" disable="true" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Label fx:id="addCustName" text="Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="addCustNameTextField" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
 
                     <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                     <TextField fx:id="titleTextField" promptText="Appointment Title" GridPane.columnIndex="1" GridPane.rowIndex="2" />
