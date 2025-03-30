@@ -65,6 +65,11 @@ public class custMainController implements Initializable {
 
     private void loadCustomerData(){
         ObservableList<Customer> customerList = CustomerDAO.getAllCustomers();
+
+        //Lambda
+
+        customerList.sort((c1, c2) -> c1.getCustomerName().compareTo(c2.getCustomerName()));
+
         customerTableView.setItems(customerList);
     }
 
