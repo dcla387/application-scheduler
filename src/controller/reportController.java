@@ -2,6 +2,8 @@ package controller;
 
 import DAO.AppointmentDAO;
 import DAO.JDBC;
+import Model.Appointment;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,4 +88,57 @@ public class reportController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void onClickContactReport(ActionEvent event) {
+
+        ObservableList<String> contactNames = AppointmentDAO.getAllContactNames();
+
+        StringBuilder report = new StringBuilder();
+        report.append("Contacts Schedule\n\n");
+
+        for (String contactName : contactNames) {
+            report.append("\nContact: ").append(contactName).append("\n");
+            report.append("************************\n");
+
+        int contactId = AppointmentDAO.getContactIdFromName(contactName);
+
+        ObservableList<Appointment> appointments = AppointmentDAO.getAppointmentByContactId(contactId);
+
+        if (appointments.isEmpty()) {
+            report.append("Did not find an scheduled appointment\n\n");
+        } else {
+
+            for (Appointment appointment : appointments) {
+
+                report.append("Appointment ID: ").append(appointment.getAppointmentId()).append("\n");
+                report.append("Title: ").append(appointment.getTitle()).append("\n");
+                report.append("Type: ").append(appointment.getType()).append("\n");
+                report.append("Description: ").append(appointment.getDescription()).append("\n");
+                report.append("Start: ").append(appointment.getStart()).append("\n");
+                report.append("End: ").append(appointment.getEnd()).append("\n");
+                report.append("Customer ID: ").append(appointment.getCustomerId()).append("\n");
+                report.append("*******************************\n");
+
+            }
+            report.append("\n");
+
+            }
+
+
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Schedules for Contact");
+        alert.setHeaderText("Break Down");
+        TextArea textArea = new TextArea(report.toString());
+        textArea.setEditable(false);
+        textArea.setPrefHeight(400);
+        textArea.setPrefWidth(400);
+
+        alert.getDialogPane().setContent(textArea);
+        alert.showAndWait();
+
+
+        }
 }

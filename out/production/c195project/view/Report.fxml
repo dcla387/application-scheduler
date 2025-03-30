@@ -15,9 +15,9 @@
            <Insets bottom="15.0" top="15.0" />
        </padding>
       <children>
-         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Total Number of Appts" />
-         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Appts by Contact Person" />
-         <Button layoutX="10.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" text="Client Count By Country" />
+         <Button fx:id="countAppointments" mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Total Appts by Type/Month" onAction="#onClickTypeMonthReport" />
+         <Button fx:id="byContact" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Appts by Contact Person" />
+         <Button fx:id="filterByCountry" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" text="Client Count By Country" />
       </children>
    </VBox>
    <Label contentDisplay="CENTER" layoutX="33.0" layoutY="14.0" prefHeight="37.0" prefWidth="159.0" text="Misc Reports" textAlignment="CENTER">

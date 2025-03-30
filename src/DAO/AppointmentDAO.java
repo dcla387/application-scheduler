@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Appointment;
+import com.mysql.cj.exceptions.ConnectionIsClosedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -147,6 +148,91 @@ public class AppointmentDAO {
             System.out.println("Report has error in retrieving Data: " + error.getMessage());
         }
         return reportData;
+    }
+
+    public static ObservableList<String> getAllContactNames() {
+        ObservableList<String> contactNames = FXCollections.observableArrayList();
+
+        try {
+            Connection connection = JDBC.getConnection();
+            String search = "Select Contact_Name From Contacts order by Contact_Name";
+            PreparedStatement preparedStatement = connection.prepareStatement(search);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                contactNames.add(resultSet.getString("Contact Name"));
+
+            }
+            } catch (SQLException error) {
+                    System.out.println("Error " + error.getMessage());
+
+        }
+        return contactNames;
+    }
+
+    public static int getContactIdFromName(String contactName) {
+        int contactId = -1;
+
+        try{
+            Connection connection = JDBC.getConnection();
+            String searchName = "Select Contact_ID From contacts Where Contact_Name = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(searchName);
+            preparedStatement.setString(1, contactName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                contactId = resultSet.getInt("Contact_ID");
+            }
+        } catch (SQLException error) {
+            System.out.println("Error " + error.getMessage());
+
+        }
+        return contactId;
+    }
+
+
+    public static ObservableList<Appointment> getAppointmentByContactId(int contactId) {
+
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+
+        try {
+            Connection connection = JDBC.getConnection();
+            String search = "Select * From appointments Where Contact_ID = ? Order By Start";
+            PreparedStatement preparedStatement = connection.prepareStatement(search);
+            preparedStatement.setInt(1, contactId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int customerId = resultSet.getInt("Customer_ID");
+                String customerName = CustomerDAO.getCustomerNameFromId(customerId);
+                String contactName = ContactDAO.getContactNameFromId(contactId);
+
+                Appointment appointment = new Appointment(
+                       resultSet.getInt("Appointment_ID"),
+                       customerName,
+                        resultSet.getString("Title"),
+                        resultSet.getString("Description"),
+                        resultSet.getString("Location"),
+                        contactName,
+                        resultSet.getString("Type"),
+                        resultSet.getTimestamp("Start").toLocalDateTime(),
+                        resultSet.getTimestamp("End").toLocalDateTime(),
+                        customerId,
+                        resultSet.getInt("User_Id")
+
+
+                );
+                appointments.add(appointment);
+
+            }
+
+        } catch (SQLException error) {
+            System.out.println("Error " + error.getMessage());
+
+        }
+        return appointments;
+
     }
 
 }
