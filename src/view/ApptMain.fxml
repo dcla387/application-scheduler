@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -42,12 +43,15 @@
       </HBox>
       <Button fx:id="logoffAppt" layoutX="882.0" layoutY="350.0" mnemonicParsing="false" onAction="#onActionExitAppt" prefHeight="35.0" prefWidth="95.0" text="Log Off" AnchorPane.rightAnchor="40.0" />
       <Button fx:id="custRecs" layoutX="814.0" layoutY="48.0" mnemonicParsing="false" onAction="#onActionToCustRecs" prefHeight="35.0" prefWidth="125.0" text="Customer Records" />
-       <VBox layoutX="269.0" layoutY="340.0" spacing="5">
-           <ComboBox fx:id="customerComboBox" prefWidth="250" />
-           <TextField fx:id="customerSearchField" promptText="Search Customer" />
+       <VBox layoutX="300.0" layoutY="340.0" spacing="5">
+
+           <ComboBox fx:id="customerComboBox" layoutX="100.0" prefHeight="25.0" prefWidth="261.0" promptText="All Customers">
+            <padding>
+               <Insets left="10.0" />
+            </padding></ComboBox>
        </VBox>
 
-          <Label layoutX="104.0" layoutY="350.0" text="Customer Lookup">
+          <Label layoutX="140.0" layoutY="345.0" text="Select Customer">
          <font>
             <Font name="JetBrains Mono Medium" size="14.0" />
          </font>

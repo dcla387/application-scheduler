@@ -2,6 +2,7 @@ package controller;
 
 import Model.Appointment;
 import DAO.AppointmentDAO;
+import DAO.CustomerDAO;
 
 import Model.Customer;
 import javafx.event.ActionEvent;
@@ -13,12 +14,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -58,6 +61,9 @@ public class apptMainController implements Initializable {
 
     @FXML
     private TableColumn<Appointment, Integer> userIdColumn;
+
+    @FXML
+    private ComboBox<String> customerComboBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
