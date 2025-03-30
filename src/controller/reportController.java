@@ -141,4 +141,26 @@ public class reportController {
 
 
         }
+
+   @FXML
+   private void onClickCountryReport(ActionEvent event) {
+
+        StringBuilder report = new StringBuilder();
+
+        AppointmentDAO.getCustomerCountByCountry(report);
+
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       alert.setTitle("Customer Count By Country");
+       alert.setHeaderText("Break Down");
+       TextArea textArea = new TextArea(report.toString());
+       textArea.setEditable(false);
+       textArea.setPrefHeight(400);
+       textArea.setPrefWidth(400);
+
+       alert.getDialogPane().setContent(textArea);
+       alert.showAndWait();
+
+
+
+   }
 }

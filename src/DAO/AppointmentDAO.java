@@ -1,12 +1,15 @@
 package DAO;
 
 import Model.Appointment;
+import Model.Country;
+import Model.Customer;
 import com.mysql.cj.exceptions.ConnectionIsClosedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -164,8 +167,8 @@ public class AppointmentDAO {
                 contactNames.add(resultSet.getString("Contact_Name"));
 
             }
-            } catch (SQLException error) {
-                    System.out.println("Error " + error.getMessage());
+        } catch (SQLException error) {
+            System.out.println("Error " + error.getMessage());
 
         }
         return contactNames;
@@ -174,7 +177,7 @@ public class AppointmentDAO {
     public static int getContactIdFromName(String contactName) {
         int contactId = -1;
 
-        try{
+        try {
             Connection connection = JDBC.getConnection();
             String searchName = "Select Contact_ID From contacts Where Contact_Name = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(searchName);
@@ -209,8 +212,8 @@ public class AppointmentDAO {
                 String contactName = ContactDAO.getContactNameFromId(contactId);
 
                 Appointment appointment = new Appointment(
-                       resultSet.getInt("Appointment_ID"),
-                       customerName,
+                        resultSet.getInt("Appointment_ID"),
+                        customerName,
                         resultSet.getString("Title"),
                         resultSet.getString("Description"),
                         resultSet.getString("Location"),
@@ -235,6 +238,47 @@ public class AppointmentDAO {
 
     }
 
+    public static void getCustomerCountByCountry(StringBuilder report) {
+
+        try {
+            ArrayList<String> countries = new ArrayList<>();
+            ArrayList<Integer> counts = new ArrayList<>();
+
+            ObservableList<Customer> allCustomers = CustomerDAO.getAllCustomers();
+
+            for (Customer customer : allCustomers) {
+
+                int divisionId = customer.getDivisionId();
+                Country countryObj = CountryDAO.getCountryByDivisionId(divisionId);
+
+                String countryName = (countryObj !=null) ? countryObj.getCountryName() : "Unknown";
+
+                int index = countries.indexOf(countryName);
+
+                if (index >= 0) {
+                    int currentCount = counts.get(index);
+                    counts.set(index, currentCount + 1);
+                } else {
+                    countries.add(countryName);
+                    counts.add(1);
+                }
+            }
+
+            report.append("Customer Count By Country\n\n");
+
+            for (int i = 0; i < countries.size(); i++) {
+                String country = countries.get(i);
+                int count = counts.get(i);
+
+                report.append(country).append(" : ").append(count);
+                report.append(count == 1 ? " customer\n" : " customers\n");
+            }
+        } catch (Exception error) {
+
+            report.append("Error: ").append(error.getMessage());
+        }
+
+    }
 }
 
 
