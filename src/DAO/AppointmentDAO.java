@@ -54,8 +54,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        resultSet.getTimestamp("Start").toLocalDateTime(),
-                        resultSet.getTimestamp("End").toLocalDateTime(),
+                        localStart,
+                        localEnd,
                         resultSet.getInt("Customer_Id"),
                         resultSet.getInt("User_Id")
                 );
@@ -82,7 +82,7 @@ public class AppointmentDAO {
             String endStr = end.toString().replace('T', ' ');
 
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
-                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + start + "', '" + end + "', " + customerId + ", " + userId + ")";
+                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + startUTC + "', '" + endUTC + "', " + customerId + ", " + userId + ")";
 
             PreparedStatement preparedStatement = connection.prepareStatement(get);
             preparedStatement.executeUpdate();
@@ -109,8 +109,8 @@ public class AppointmentDAO {
                     "Location = '" + location + "', " +
                     "Contact_ID = " + contactId + ", " +
                     "Type = '" + type + "', " +
-                    "Start = '" + start + "', " +
-                    "End = '" + end + "', " +
+                    "Start = '" + startUTC + "', " +
+                    "End = '" + endUTC + "', " +
                     "Customer_ID = " + customerId + ", " +
                     "User_ID = " + userId + " " +
                     "WHERE Appointment_ID = " + appointmentId;
