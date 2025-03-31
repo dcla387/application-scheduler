@@ -9,6 +9,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -321,6 +324,30 @@ public class AppointmentDAO {
 
 
     }
+
+    public static boolean isInBizHours(LocalDateTime start, LocalDateTime end) {
+
+        ZoneId localZone = ZoneId.systemDefault();
+        ZoneId eastZone = ZoneId.of("America/New_York");
+
+        ZonedDateTime startZoned = start.atZone(localZone);
+        ZonedDateTime startEast = startZoned.withZoneSameInstant(eastZone);
+        LocalTime startTimeEast = startEast.toLocalTime();
+
+        ZonedDateTime endZoned = end.atZone(localZone);
+        ZonedDateTime endEast = endZoned.withZoneSameInstant(eastZone);
+        LocalTime endTimeEast = endEast.toLocalTime();
+
+        LocalTime bizStart = LocalTime.of(8, 0);
+        LocalTime bizEnd = LocalTime.of(22, 0);
+
+        return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
+
+
+
+    }
+
+
 }
 
 
