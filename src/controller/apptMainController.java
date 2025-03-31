@@ -84,6 +84,8 @@ public class apptMainController implements Initializable {
         contactColumn.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
 
         startColumn.setCellFactory(column -> new TableCell<Appointment, LocalDateTime>() {
             @Override
