@@ -68,6 +68,9 @@ public class apptMainController implements Initializable {
     @FXML
     private RadioButton weekRadioButton;
 
+    @FXML
+    private RadioButton allRadioButton;
+
     private ToggleGroup viewToggleGroup;
 
     private ObservableList<Appointment> allAppointments;
@@ -86,13 +89,15 @@ public class apptMainController implements Initializable {
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
         viewToggleGroup = new ToggleGroup();
+        allRadioButton.setToggleGroup(viewToggleGroup);
         monthRadioButton.setToggleGroup(viewToggleGroup);
         weekRadioButton.setToggleGroup(viewToggleGroup);
 
+        allRadioButton.setOnAction(event -> filterAppointmentsByTimeFrame());
         monthRadioButton.setOnAction(event -> filterAppointmentsByTimeFrame());
         weekRadioButton.setOnAction(event -> filterAppointmentsByTimeFrame());
 
-
+        allRadioButton.setSelected(true);
 
         allAppointments = AppointmentDAO.getAllAppointments();
         appointmentTableView.setItems(allAppointments);

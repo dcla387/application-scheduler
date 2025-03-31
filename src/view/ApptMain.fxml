@@ -36,6 +36,7 @@
       </Text>
       <RadioButton fx:id="monthRadioButton" layoutX="562.0" layoutY="52.0" mnemonicParsing="false" text="Month" />
       <RadioButton fx:id="weekRadioButton" layoutX="635.0" layoutY="52.0" mnemonicParsing="false" text="Week" />
+       <RadioButton fx:id="allRadioButton" layoutX="700.0" layoutY="52.0" mnemonicParsing="false" text="All Appts" />
       <HBox spacing="10" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="43.0">
        <Button fx:id="addAppts" onAction="#onClickAddAppts" prefHeight="35.0" prefWidth="95.0" text="Add Appt" />
        <Button fx:id="ModApptsButton" onAction="#onClickToModAppt" prefHeight="35.0" prefWidth="95.0" text="Modify Appt" />
