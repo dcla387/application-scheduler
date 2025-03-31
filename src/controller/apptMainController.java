@@ -172,9 +172,6 @@ public class apptMainController implements Initializable {
 
 
 
-
-    }
-
     public void onActionExitAppt(ActionEvent event) {System.exit(0);}
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
