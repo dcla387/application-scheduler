@@ -165,6 +165,37 @@ public class addApptController implements Initializable {
         stage.show();
     }
 
+    private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
+        if (title.isEmpty() || description.isEmpty() || start == null || end == null){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Fields cannot be blank");
+            alert.showAndWait();
+            return false;
+       }
+
+        if (AppointmentDAO.isInBizHours(start, end)) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Out of Range");
+            alert.setContentText("This appointment is not within Business Hours");
+            alert.showAndWait();
+            return false;
+        }
+
+        int appointmentId = 0;
+
+        if (AppointmentDAO.appointIsOverlapping(customerId, start, end, appointmentId)) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Appointment cannot be booked");
+            alert.setContentText("There is already a booking at this time for this customer");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+
 
     public void onClickToCancelAppointment(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));

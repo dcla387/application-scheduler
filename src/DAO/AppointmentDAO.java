@@ -4,6 +4,7 @@ import Model.Appointment;
 import Model.Country;
 import Model.Customer;
 import com.mysql.cj.exceptions.ConnectionIsClosedException;
+import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -343,6 +344,34 @@ public class AppointmentDAO {
 
         return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
 
+    }
+
+    public static boolean appointIsOverlapping (int customerId, LocalDateTime start, LocalDateTime end, int appointmentId) {
+
+        ObservableList<Appointment> customerAppointments = FXCollections.observableArrayList();
+
+        try {
+
+            Connection connection = JDBC.getConnection();
+            String search = "Select * From appointments Where Customer_ID = " + customerId + "AND Appointment_ID != " + appointmentId;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(search);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                LocalDateTime currentStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime currentEnd = resultSet.getTimestamp("End").toLocalDateTime();
+
+                if (start.isBefore(currentEnd) && end.isAfter(currentStart)) {
+                    return true;
+
+                }
+            }
+        } catch (SQLException error) {
+            System.out.println("Error in porcessing: " + error.getMessage());
+        }
+        return false;
 
 
     }
