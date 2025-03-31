@@ -3,6 +3,7 @@ package controller;
 import DAO.AppointmentDAO;
 import DAO.ContactDAO;
 import DAO.CustomerDAO;
+import DAO.JDBC;
 import Model.Contact;
 import Model.Customer;
 import Model.Appointment;
@@ -30,6 +31,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -152,8 +155,14 @@ public class addApptController implements Initializable {
             return;
         }
 
-        AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime,
-                customer.getCustomerId(), userID);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formattedStart = startDateTime.format(formatter);
+        String formattedEnd = endDateTime.format(formatter);
+
+
+
+        AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime, customer.getCustomerId(), userID);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 

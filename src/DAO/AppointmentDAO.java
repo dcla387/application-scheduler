@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class AppointmentDAO {
 
     public static ObservableList<Appointment> getAllAppointments() {
@@ -64,6 +66,8 @@ public class AppointmentDAO {
                         resultSet.getInt("Customer_Id"),
                         resultSet.getInt("User_Id")
                 );
+
+
 
                 appointmentList.add(appointment);
             }
@@ -123,6 +127,12 @@ public class AppointmentDAO {
                     "Customer_ID = " + customerId + ", " +
                     "User_ID = " + userId + " " +
                     "WHERE Appointment_ID = " + appointmentId;
+
+            System.out.println("Converting to UTC:");
+            System.out.println("Local start: " + start);
+            System.out.println("UTC start: " + startUTC);
+            System.out.println("Local end: " + end);
+            System.out.println("UTC end: " + endUTC);
 
             PreparedStatement preparedStatement = connection.prepareStatement(update);
             preparedStatement.executeUpdate();

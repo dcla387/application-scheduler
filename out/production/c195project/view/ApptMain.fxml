@@ -17,8 +17,8 @@
       <Button fx:id="MainApptScreen" layoutX="882.0" layoutY="48.0" mnemonicParsing="false" onAction="#toMainButtonClick" prefHeight="35.0" prefWidth="95.0" text="Main" AnchorPane.rightAnchor="40.0" />
       <TableView fx:id="appointmentTableView" layoutX="31.0" layoutY="93.0" prefHeight="238.0" prefWidth="1118.0">
         <columns>
-          <TableColumn fx:id="appointmentIdColumn" prefWidth="105.0" text="Appointment ID" />
-          <TableColumn fx:id="titleColumn" prefWidth="45.0" text="Title" />
+          <TableColumn fx:id="appointmentIdColumn" prefWidth="45.0" text="Appointment ID" />
+          <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
             <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description" />
             <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Location" />
             <TableColumn fx:id="contactColumn" prefWidth="75.0" text="Contact" />

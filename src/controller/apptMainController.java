@@ -3,6 +3,7 @@ package controller;
 import Model.Appointment;
 import DAO.AppointmentDAO;
 import DAO.CustomerDAO;
+import DAO.JDBC;
 
 import Model.Customer;
 import javafx.collections.FXCollections;
@@ -23,6 +24,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.net.URL;
+
+import java.time.ZonedDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.time.ZoneId;
+
 
 public class apptMainController implements Initializable {
 
@@ -94,12 +101,13 @@ public class apptMainController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
+                    // Directly use the local time and format it
                     setText(item.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
                 }
-        }
+            }
+        });
 
-    });
-
+        // Format the end column to display local time
         endColumn.setCellFactory(column -> new TableCell<Appointment, LocalDateTime>() {
             @Override
             protected void updateItem(LocalDateTime item, boolean empty) {
@@ -107,10 +115,11 @@ public class apptMainController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
+                    // Directly use the local time and format it
                     setText(item.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
                 }
             }
-} );
+        });
 
 
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));

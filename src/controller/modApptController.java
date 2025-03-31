@@ -326,7 +326,9 @@ public class modApptController implements Initializable {
                 userId
         );
 
-
+        System.out.println("Modifying appointment: Local time values:");
+        System.out.println("Start: " + startDateTime);
+        System.out.println("End: " + endDateTime);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
