@@ -112,7 +112,7 @@ public class modApptController implements Initializable {
             }
         }
 
-        ZoneId utcZone = ZoneOffset.UTC;
+        /*ZoneId utcZone = ZoneOffset.UTC;
         ZoneId localZone = ZoneId.systemDefault();
 
         LocalDateTime utcStart = appointment.getStart();
@@ -129,7 +129,7 @@ public class modApptController implements Initializable {
 
 
 
-        /*private void populateTimeComboBoxes() {
+        private void populateTimeComboBoxes() {
             LocalTime start = LocalTime.of(0, 0);
             LocalTime end = LocalTime.of(23, 30);
 
@@ -142,11 +142,11 @@ public class modApptController implements Initializable {
             }
         }*/
 
-        startDatePicker.setValue(localStart.toLocalDate());
-        endDatePicker.setValue(localEnd.toLocalDate());
+        startDatePicker.setValue(appointment.getStart().toLocalDate());
+        endDatePicker.setValue(appointment.getEnd().toLocalDate());
 
-        startTimeComboBox.setValue(localStart.toLocalTime().toString());
-        endTimeComboBox.setValue(localEnd.toLocalTime().toString());
+        startTimeComboBox.setValue(appointment.getStart().toLocalTime().toString());
+        endTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
 
         userIDComboBox.setValue(appointment.getUserId());
 

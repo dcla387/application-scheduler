@@ -251,8 +251,8 @@ public class AppointmentDAO {
                 ZoneId utcZone = ZoneOffset.UTC;
                 ZoneId localZone = ZoneId.systemDefault();
 
-                LocalDateTime localStart = utcStart.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-                LocalDateTime localEnd = utcEnd.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+                LocalDateTime localStart = utcStart.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
+                LocalDateTime localEnd = utcEnd.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
 
 
 
@@ -348,8 +348,8 @@ public class AppointmentDAO {
                 ZoneId utcZone = ZoneOffset.UTC;
                 ZoneId localZone = ZoneId.systemDefault();
 
-                LocalDateTime localStart = utcStart.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-                LocalDateTime localEnd = utcEnd.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+                LocalDateTime localStart = utcStart.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
+                LocalDateTime localEnd = utcEnd.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
 
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
