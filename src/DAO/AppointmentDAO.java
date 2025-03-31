@@ -12,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +64,10 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
+            ZoneId zone = ZoneId.systemDefault();
+            LocalDateTime startUTC = start.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+            LocalDateTime endUTC = end.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+
             String startStr = start.toString().replace('T', ' ');
             String endStr = end.toString().replace('T', ' ');
 
@@ -80,6 +85,11 @@ public class AppointmentDAO {
     public static void updateAppointment(int appointmentId, String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
+
+            ZoneId zone = ZoneId.systemDefault();
+            LocalDateTime startUTC = start.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+            LocalDateTime endUTC = end.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+
             String startStr = start.toString().replace('T', ' ');
             String endStr = end.toString().replace('T', ' ');
 

@@ -147,6 +147,20 @@ public class apptMainController implements Initializable {
                     }
                 }
 
+            } else if (weekRadioButton.isSelected()){
+
+                LocalDateTime oneWeek = now.plusDays(7);
+
+                for (Appointment appointment : allAppointments) {
+                    LocalDateTime appointmentStart = appointment.getStart();
+
+                    if ((appointmentStart.isEqual(now) || appointmentStart.isAfter(now)) && (appointmentStart.isBefore(oneWeek)) || (appointmentStart.isEqual(oneWeek))) {
+
+                            filteredAppointments.add(appointment);
+                    }
+                }
+
+
             } else {
                 filteredAppointments = allAppointments;
             }

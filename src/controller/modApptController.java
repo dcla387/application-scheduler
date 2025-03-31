@@ -19,9 +19,8 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+
 import java.util.ResourceBundle;
 
 
@@ -113,6 +112,23 @@ public class modApptController implements Initializable {
             }
         }
 
+        ZoneId utcZone = ZoneOffset.UTC;
+        ZoneId localZone = ZoneId.systemDefault();
+
+        LocalDateTime utcStart = appointment.getStart();
+        ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
+
+        ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
+        LocalDateTime localStart = localZonedStart.toLocalDateTime();
+
+        LocalDateTime utcEnd = appointment.getEnd();
+        ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
+
+        ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
+        LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
+
+
+
         /*private void populateTimeComboBoxes() {
             LocalTime start = LocalTime.of(0, 0);
             LocalTime end = LocalTime.of(23, 30);
@@ -126,11 +142,11 @@ public class modApptController implements Initializable {
             }
         }*/
 
-        startDatePicker.setValue(appointment.getStart().toLocalDate());
-        endDatePicker.setValue(appointment.getEnd().toLocalDate());
+        startDatePicker.setValue(localStart.toLocalDate());
+        endDatePicker.setValue(localEnd.toLocalDate());
 
-        startTimeComboBox.setValue(appointment.getStart().toLocalTime().toString());
-        endTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
+        startTimeComboBox.setValue(localStart.toLocalTime().toString());
+        endTimeComboBox.setValue(localEnd.toLocalTime().toString());
 
         userIDComboBox.setValue(appointment.getUserId());
 
