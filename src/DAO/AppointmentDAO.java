@@ -74,9 +74,11 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId zone = ZoneId.systemDefault();
-            LocalDateTime startUTC = start.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
-            LocalDateTime endUTC = end.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+            ZoneId localZone = ZoneId.systemDefault();
+            ZoneId utcZone = ZoneOffset.UTC;
+
+            LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
 
             String startStr = start.toString().replace('T', ' ');
             String endStr = end.toString().replace('T', ' ');
@@ -96,9 +98,11 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId zone = ZoneId.systemDefault();
-            LocalDateTime startUTC = start.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
-            LocalDateTime endUTC = end.atZone(zone).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime();
+            ZoneId localZone = ZoneId.systemDefault();
+            ZoneId utcZone = ZoneOffset.UTC;
+
+            LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
 
             String startStr = start.toString().replace('T', ' ');
             String endStr = end.toString().replace('T', ' ');
