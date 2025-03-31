@@ -188,8 +188,10 @@ public class modApptController implements Initializable {
 
         int appointmentId = selectedAppointment.getAppointmentId();
 
-        AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime,
-                customer.getCustomerId(), userID);
+        if (!validateAppointment(title, description, startDateTime, endDateTime, customer.getCustomerId())) {
+            return;
+        }
+        AppointmentDAO.updateAppointment(appointmentId, title, description, location, contact.getContactId(), type, startDateTime, endDateTime, customer.getCustomerId(), userID);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 
