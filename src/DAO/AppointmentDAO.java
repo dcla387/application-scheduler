@@ -353,7 +353,7 @@ public class AppointmentDAO {
         try {
 
             Connection connection = JDBC.getConnection();
-            String search = "Select * From appointments Where Customer_ID = " + customerId + "AND Appointment_ID != " + appointmentId;
+            String search = "Select * From appointments Where Customer_ID = " + customerId + " AND Appointment_ID != " + appointmentId;
 
             PreparedStatement preparedStatement = connection.prepareStatement(search);
             ResultSet resultSet = preparedStatement.executeQuery();

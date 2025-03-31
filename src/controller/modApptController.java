@@ -210,7 +210,7 @@ public class modApptController implements Initializable {
             return false;
         }
 
-        if (AppointmentDAO.isInBizHours(start, end)) {
+        if (!AppointmentDAO.isInBizHours(start, end)) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Out of Range");
@@ -219,7 +219,7 @@ public class modApptController implements Initializable {
             return false;
         }
 
-        int appointmentId = 0;
+        int appointmentId = selectedAppointment.getAppointmentId();
 
         if (AppointmentDAO.appointIsOverlapping(customerId, start, end, appointmentId)) {
 
@@ -290,6 +290,10 @@ public class modApptController implements Initializable {
         int appointmentId = selectedAppointment.getAppointmentId();
         int customerId = selectedAppointment.getCustomerId();
         int userId = (Integer) userIDComboBox.getValue();
+
+        if (!validateAppointment(title, description, startDateTime, endDateTime, customerId)) {
+            return;
+        }
 
         AppointmentDAO.updateAppointment(
                 appointmentId,

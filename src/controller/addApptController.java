@@ -174,7 +174,7 @@ public class addApptController implements Initializable {
             return false;
        }
 
-        if (AppointmentDAO.isInBizHours(start, end)) {
+        if (!AppointmentDAO.isInBizHours(start, end)) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Out of Range");
