@@ -101,13 +101,13 @@ public class apptMainController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    // Directly use the local time and format it
+
                     setText(item.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
                 }
             }
         });
 
-        // Format the end column to display local time
+
         endColumn.setCellFactory(column -> new TableCell<Appointment, LocalDateTime>() {
             @Override
             protected void updateItem(LocalDateTime item, boolean empty) {

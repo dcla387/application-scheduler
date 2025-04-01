@@ -83,17 +83,17 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId localZone = ZoneId.systemDefault();
+            /*ZoneId localZone = ZoneId.systemDefault();
             ZoneId utcZone = ZoneOffset.UTC;
 
             LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
             LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
 
             String startStr = start.toString().replace('T', ' ');
-            String endStr = end.toString().replace('T', ' ');
+            String endStr = end.toString().replace('T', ' ');*/
 
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
-                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + startUTC + "', '" + endUTC + "', " + customerId + ", " + userId + ")";
+                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + start + "', '" + end + "', " + customerId + ", " + userId + ")";
 
             PreparedStatement preparedStatement = connection.prepareStatement(get);
             preparedStatement.executeUpdate();
@@ -107,14 +107,12 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId localZone = ZoneId.systemDefault();
+            /*ZoneId localZone = ZoneId.systemDefault();
             ZoneId utcZone = ZoneOffset.UTC;
 
             LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();*/
 
-            String startStr = start.toString().replace('T', ' ');
-            String endStr = end.toString().replace('T', ' ');
 
             String update = "Update appointments Set " +
                     "Title = '" + title + "', " +
@@ -122,17 +120,17 @@ public class AppointmentDAO {
                     "Location = '" + location + "', " +
                     "Contact_ID = " + contactId + ", " +
                     "Type = '" + type + "', " +
-                    "Start = '" + startUTC + "', " +
-                    "End = '" + endUTC + "', " +
+                    "Start = '" + start + "', " +
+                    "End = '" + end + "', " +
                     "Customer_ID = " + customerId + ", " +
                     "User_ID = " + userId + " " +
                     "WHERE Appointment_ID = " + appointmentId;
 
-            System.out.println("Converting to UTC:");
+            /*System.out.println("Converting to UTC:");
             System.out.println("Local start: " + start);
             System.out.println("UTC start: " + startUTC);
             System.out.println("Local end: " + end);
-            System.out.println("UTC end: " + endUTC);
+            System.out.println("UTC end: " + endUTC);*/
 
             PreparedStatement preparedStatement = connection.prepareStatement(update);
             preparedStatement.executeUpdate();
