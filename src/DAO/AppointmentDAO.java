@@ -244,16 +244,8 @@ public class AppointmentDAO {
                 String contactName = ContactDAO.getContactNameFromId(contactId);
 
 
-                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
-
-                ZoneId utcZone = ZoneOffset.UTC;
-                ZoneId localZone = ZoneId.systemDefault();
-
-                LocalDateTime localStart = utcStart.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
-                LocalDateTime localEnd = utcEnd.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
-
-
+                LocalDateTime start = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("End").toLocalDateTime();
 
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
@@ -263,8 +255,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        localStart,
-                        localEnd,
+                        start,
+                        end,
                         customerId,
                         resultSet.getInt("User_Id")
 
@@ -341,14 +333,9 @@ public class AppointmentDAO {
                 String contactName = ContactDAO.getContactNameFromId(contactId);
                 String customerName = CustomerDAO.getCustomerNameFromId(customerId);
 
-                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
+                LocalDateTime start = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("End").toLocalDateTime();
 
-                ZoneId utcZone = ZoneOffset.UTC;
-                ZoneId localZone = ZoneId.systemDefault();
-
-                LocalDateTime localStart = utcStart.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
-                LocalDateTime localEnd = utcEnd.atZone(utcZone).withZoneSameInstant(localZone).toLocalDateTime();
 
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
@@ -358,8 +345,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        localStart,
-                        localEnd,
+                        start,
+                        end,
                         customerId,
                         resultSet.getInt("User_Id")
 
