@@ -38,19 +38,10 @@ public class AppointmentDAO {
                 int customerId = resultSet.getInt("Customer_ID");
                 String customerName = CustomerDAO.getCustomerNameFromId(customerId);
 
-                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
+                //System.out.println("Raw database time: " + resultSet.getTimestamp("Start").toLocalDateTime());
 
-                ZoneId utcZone = ZoneOffset.UTC;
-                ZoneId localZone = ZoneId.systemDefault();
-
-                ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
-                ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
-                LocalDateTime localStart = localZonedStart.toLocalDateTime();
-
-                ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
-                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
-                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
+                LocalDateTime start = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("End").toLocalDateTime();
 
 
                 Appointment appointment = new Appointment(
@@ -61,8 +52,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        localStart,
-                        localEnd,
+                        start,
+                        end,
                         resultSet.getInt("Customer_Id"),
                         resultSet.getInt("User_Id")
                 );
