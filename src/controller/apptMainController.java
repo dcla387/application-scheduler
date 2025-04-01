@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -102,7 +103,7 @@ public class apptMainController implements Initializable {
                     setText(null);
                 } else {
 
-                    setText(item.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+                    setText(item.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 }
             }
         });
@@ -115,8 +116,8 @@ public class apptMainController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    // Directly use the local time and format it
-                    setText(item.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+
+                    setText(item.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 }
             }
         });

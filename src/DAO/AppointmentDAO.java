@@ -41,7 +41,7 @@ public class AppointmentDAO {
 
                 //System.out.println("Raw database time: " + resultSet.getTimestamp("Start").toLocalDateTime());
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String startInput = resultSet.getString("Start");
                 String endInput = resultSet.getString("End");
 
@@ -54,12 +54,12 @@ public class AppointmentDAO {
                 ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(ZoneId.systemDefault());
 
                 LocalDateTime localStart = localZonedStart.toLocalDateTime();
-                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
+                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();*/
 
-               /* LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
 
-                ZoneId utcZone = ZoneOffset.UTC;
+                ZoneId utcZone = ZoneId.of("UTC");
                 ZoneId localZone = ZoneId.systemDefault();
 
                 ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
@@ -68,7 +68,7 @@ public class AppointmentDAO {
 
                 ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
                 ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
-                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();*/
+                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
 
 
                 Appointment appointment = new Appointment(
@@ -102,7 +102,7 @@ public class AppointmentDAO {
             Connection connection = JDBC.getConnection();
 
             ZoneId localZone = ZoneId.systemDefault();
-            ZoneId utcZone = ZoneOffset.UTC;
+            ZoneId utcZone = ZoneId.of("UTC");
 
             LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
             LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
@@ -112,9 +112,7 @@ public class AppointmentDAO {
             System.out.println("UTC start: " + startUTC);
             System.out.println("Local end: " + end);
             System.out.println("UTC end: " + endUTC);
-/*
-            String startStr = start.toString().replace('T', ' ');
-            String endStr = end.toString().replace('T', ' ');*/
+
 
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
                     "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + startUTC + "', '" + endUTC + "', " + customerId + ", " + userId + ")";
@@ -132,7 +130,7 @@ public class AppointmentDAO {
             Connection connection = JDBC.getConnection();
 
             ZoneId localZone = ZoneId.systemDefault();
-            ZoneId utcZone = ZoneOffset.UTC;
+            ZoneId utcZone = ZoneId.of("UTC");
 
             LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
             LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
@@ -277,8 +275,19 @@ public class AppointmentDAO {
                 String contactName = ContactDAO.getContactNameFromId(contactId);
 
 
-                LocalDateTime start = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime end = resultSet.getTimestamp("End").toLocalDateTime();
+                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
+
+                ZoneId utcZone = ZoneId.of("UTC");
+                ZoneId localZone = ZoneId.systemDefault();
+
+                ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
+                ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
+                LocalDateTime localStart = localZonedStart.toLocalDateTime();
+
+                ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
+                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameLocal(localZone);
+                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
 
                 Appointment appointment = new Appointment(
                         resultSet.getInt("Appointment_ID"),
@@ -288,8 +297,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        start,
-                        end,
+                        localStart,
+                        localEnd,
                         customerId,
                         resultSet.getInt("User_Id")
 
@@ -366,8 +375,19 @@ public class AppointmentDAO {
                 String contactName = ContactDAO.getContactNameFromId(contactId);
                 String customerName = CustomerDAO.getCustomerNameFromId(customerId);
 
-                LocalDateTime start = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime end = resultSet.getTimestamp("End").toLocalDateTime();
+                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
+
+                ZoneId utcZone = ZoneId.of("UTC");
+                ZoneId localZone = ZoneId.systemDefault();
+
+                ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
+                ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
+                LocalDateTime localStart = localZonedStart.toLocalDateTime();
+
+                ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
+                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
+                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
 
 
                 Appointment appointment = new Appointment(
@@ -378,8 +398,8 @@ public class AppointmentDAO {
                         resultSet.getString("Location"),
                         contactName,
                         resultSet.getString("Type"),
-                        start,
-                        end,
+                        localStart,
+                        localEnd,
                         customerId,
                         resultSet.getInt("User_Id")
 
@@ -429,8 +449,19 @@ public class AppointmentDAO {
 
             while (resultSet.next()) {
 
-                LocalDateTime currentStart = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime currentEnd = resultSet.getTimestamp("End").toLocalDateTime();
+                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
+
+                ZoneId utcZone = ZoneId.of("UTC");
+                ZoneId localZone = ZoneId.systemDefault();
+
+                ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
+                ZonedDateTime localZoneStart = utcZonedStart.withZoneSameInstant(localZone);
+                LocalDateTime currentStart = localZoneStart.toLocalDateTime();
+
+                ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
+                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
+                LocalDateTime currentEnd = localZonedEnd.toLocalDateTime();
 
                 if (start.isBefore(currentEnd) && end.isAfter(currentStart)) {
                     return true;
