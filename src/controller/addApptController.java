@@ -88,8 +88,22 @@ public class addApptController implements Initializable {
         userIDComboBox.getItems().addAll(1, 2);
         userIDComboBox.setValue(1);
 
-    }
+        LocalDate today = LocalDate.now();
+        startDatePicker.setValue(today);
+        endDatePicker.setValue(today);
 
+        LocalTime defaultStartTime = LocalTime.of(9, 0);
+        if (startTimeComboBox.getItems().contains(defaultStartTime.toString())) {
+            startTimeComboBox.setValue(defaultStartTime.toString());
+
+        }
+
+        LocalTime defaultEndTime = LocalTime.of(10, 0);
+        if (endTimeComboBox.getItems().contains(defaultEndTime.toString())) {
+            endTimeComboBox.setValue(defaultEndTime.toString());
+        }
+
+    }
 
 
     private void populateTimeComboBoxes() {
@@ -155,12 +169,14 @@ public class addApptController implements Initializable {
             return;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         String formattedStart = startDateTime.format(formatter);
-        String formattedEnd = endDateTime.format(formatter);
+        String formattedEnd = endDateTime.format(formatter);*/
 
-
+        if (!validateAppointment(title, description, startDateTime, endDateTime, customer.getCustomerId())) {
+            return;
+        }
 
         AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime, customer.getCustomerId(), userID);
 
