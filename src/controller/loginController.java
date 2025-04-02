@@ -32,10 +32,15 @@ import java.sql.SQLException;
 
 
 /**
- * This class is a controleer for the Login Screen.
- * It is a standard username and password login authentication.
+ * This class is a controller for the Login Screen.
+ * <p>It is a standard username and password login authentication.
  * Has localization support for a French language login prompts.
- * At login it will check for appointments within 15 mins of login
+ * At login it will check for appointments within 15 mins of login</p>
+ *
+ * <p>All login attempts will be logged as Successful or Failed.</p>
+ *
+ * @author Donna Clark
+ * @version  1.0
  * */
 
 public class loginController implements Initializable {
@@ -108,7 +113,14 @@ public class loginController implements Initializable {
 
 
     /**
-     * This Initializes the controller class
+     * This Initializes the controller class to set up the interface.
+     *
+     * <p>This is called after FXML is loaded and does the following:</p>
+     * <ul>
+     *     <li>Sets the location of the User</li>
+     *     <li>Detects if we need the French promps</li>
+     *     <li>Updates the labels to French</li>
+     * </ul>
      * @param url The location for resolving relative paths
      * @param resourceBundle for localizing the code. In this case looking to see if French needs to be triggered
      */
@@ -150,8 +162,15 @@ public class loginController implements Initializable {
 
     /**
      * Handler for the Button Click to take a User to the Main Screen.
-     * Will handle validation of login credentials true or false and log the findings
-     * This also will search for any appointments that are occurring in the next 15 mins after login
+     * <p>This method does the following:</p>
+     * <ul>
+     *      <li>Will handle validation of login credentials true or false and log the findings</li>
+     *      <li>Logs login attempts</li>
+     *      <li>On good login navigates to Main Controller</li>
+     *      <li>This also will search for any appointments that are occurring in the next 15 mins after login</li>
+     *</ul>
+     *
+     * @param event Object generated when clicked login
      *
      */
 
@@ -203,6 +222,11 @@ public class loginController implements Initializable {
             }
             }
 
+            /**
+             *
+             *
+             *
+             * */
 
     private void error(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
