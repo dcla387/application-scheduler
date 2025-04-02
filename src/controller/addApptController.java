@@ -181,6 +181,27 @@ public class addApptController implements Initializable {
 
     }
 
+    /**
+     * Validates an appointment.
+     *
+     * <p>This method performs validation checks:</p>
+     * <ul>
+     *   <li>Fields are not empty</li>
+     *   <li>Appointment times fall within business hours</li>
+     *   <li>Checks for overlapping appointments</li>
+     * </ul>
+     *
+     * <p>If any validation check fails, an appropriate error alert is displayed.</p>
+     *
+     *
+     * @param title The appointment title
+     * @param description The appointment description
+     * @param start The appointment start date/time
+     * @param end The appointment end date/time
+     * @param customerId The customer ID associated with the appointment
+     * @return true if appointment passes all validation checks, false otherwise
+     */
+
     private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
         if (title.isEmpty() || description.isEmpty() || start == null || end == null){
 
@@ -212,7 +233,11 @@ public class addApptController implements Initializable {
         return true;
     }
 
-
+    /**
+    * Populates the time combo boxes with start and end
+     *
+     * <p>This method creates time slots in 15 min increments.</p>
+     */
 
     private void populateTimeComboBoxes() {
         LocalTime start = LocalTime.of(0, 0);
@@ -226,6 +251,27 @@ public class addApptController implements Initializable {
             start = start.plusMinutes(15);
         }
     }
+
+    /**
+     * Handles the save appointment button click event.
+     *
+     * <p>This method performs the following:</p>
+     * <ul>
+     *   <li>Retrieves input values from form fields</li>
+     *   <li>Validates that all required fields are filled</li>
+     *   <li>Checks that end time is after start time</li>
+     *   <li>Validates appointments</li>
+     *   <li>Converts times</li>
+     *   <li>Saves the appointment to the database</li>
+     *   <li>Returns to the main appointments screen</li>
+     * </ul>
+     *
+     * <p>If any validation fails, appropriate error alerts are displayed
+     * and the save operation is aborted.</p>
+     *
+     * @param event The ActionEvent object generated when the save button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
 
     @FXML
     private void onClickSaveAppt(ActionEvent event) throws IOException {
@@ -310,6 +356,15 @@ public class addApptController implements Initializable {
     }
 
 
+        /**
+         * Handles the cancel upon click button
+         *
+         * <p>This method cancels the appointment and returns to the main appointments screen without saving the data.</p>
+         *
+         * @param event The ActionEvent object generated when the save button is clicked
+         * @throws IOException If an error occurs during FXML loading or scene switching
+         */
+
     public void onClickToCancelAppointment(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 
@@ -320,6 +375,15 @@ public class addApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Handles the main click button
+     *
+     * <p>This method returns to the main menu screen without saving the data.</p>
+     *
+     * @param event The ActionEvent object generated when the main button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
 
     public void onClickToMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
