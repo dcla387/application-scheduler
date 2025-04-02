@@ -31,57 +31,154 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZoneId;
 
+/**
+ * This class is a Main Customer controller for Customers.
+ *
+ * <p>This controller manages the appointments table view and provides viewing,
+ * adding, modifying, and deleting appointments. It includes filtering capabilities by time frame
+ * (all, month, week) and by customer.</p>
+ *
+ *
+ * @author Donna Clark
+ * @version  1.0
+ * */
+
 
 public class apptMainController implements Initializable {
+
+    /**
+     * TableView displaying the list of appointments.
+     */
 
     @FXML
     private TableView<Appointment> appointmentTableView;
 
+    /**
+     * TableColumn for displaying appointment IDs.
+     */
+
     @FXML
     private TableColumn<Appointment, Integer> appointmentIdColumn;
+
+    /**
+     * TableColumn for displaying appointment titles.
+     */
 
     @FXML
     private TableColumn<Appointment, String> titleColumn;
 
+    /**
+     * TableColumn for displaying appointment descriptions.
+     */
+
     @FXML
     private TableColumn<Appointment, String> descriptionColumn;
+
+    /**
+     * TableColumn for displaying appointment locations.
+     */
 
     @FXML
     private TableColumn<Appointment, String> locationColumn;
 
+    /**
+     * TableColumn for displaying appointment contact information.
+     */
+
     @FXML
     private TableColumn<Appointment, Integer> contactColumn;
+
+    /**
+     * TableColumn for displaying appointment types.
+     */
 
     @FXML
     private TableColumn<Appointment, String > typeColumn;
 
+    /**
+     * TableColumn for displaying appointment start date and time.
+     */
+
     @FXML
     private TableColumn<Appointment, LocalDateTime> startColumn;
+
+    /**
+     * TableColumn for displaying appointment end date and time.
+     */
 
     @FXML
     private TableColumn<Appointment, LocalDateTime> endColumn;
 
+    /**
+     * TableColumn for displaying customer IDs associated with appointments.
+     */
+
     @FXML
     private TableColumn<Appointment, Integer> customerIdColumn;
+
+    /**
+     * TableColumn for displaying user IDs associated with appointments.
+     */
 
     @FXML
     private TableColumn<Appointment, Integer> userIdColumn;
 
+    /**
+     * ComboBox for selecting customers to filter appointments.
+     */
+
     @FXML
     private ComboBox<String> customerComboBox;
+
+    /**
+     * RadioButton for filtering appointments by month.
+     */
 
     @FXML
     private RadioButton monthRadioButton;
 
+    /**
+     * RadioButton for filtering appointments by week.
+     */
+
     @FXML
     private RadioButton weekRadioButton;
+
+    /**
+     * RadioButton for displaying all appointments.
+     */
 
     @FXML
     private RadioButton allRadioButton;
 
+    /**
+     * ToggleGroup for managing the radio button selection state.
+     */
+
     private ToggleGroup viewToggleGroup;
 
+    /**
+     * ObservableList containing all appointments from the database.
+     */
+
     private ObservableList<Appointment> allAppointments;
+
+    /**
+     * Initializes the controller class.
+     *
+     * <p>This method is automatically called after the FXML file has been loaded. It performs
+     * the following tasks:</p>
+     * <ul>
+     *   <li>Sets up table columns</li>
+     *   <li>Configures date/time formatting</li>
+     *   <li>Creates and configures a toggle group for the radio buttons</li>
+     *   <li>Loads all appointments from the database into the table</li>
+     *   <li>Populates the customer combo box with all customer names</li>
+     * </ul>
+     *
+     * @param url The location used to resolve relative paths for the root object
+     * @param resourceBundle The resources used to localize the root object, or null if not localized
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -153,6 +250,13 @@ public class apptMainController implements Initializable {
 
     }
 
+    /**
+     * Filters appointments based on the selected customer.
+     *
+     * <p>This method is called when a customer is selected in the customer combo box.</p>
+     *
+     */
+
     private void filterAppointmentsByCustomer() {
         String selectedCustomer = customerComboBox.getValue();
 
@@ -167,6 +271,18 @@ public class apptMainController implements Initializable {
             ObservableList<Appointment> currentAppointments = appointmentTableView.getItems();
             ObservableList<Appointment> customerFiltered = FXCollections.observableArrayList();
         }
+
+    /**
+     * Filters appointments based on the selected time frame (all, month, week) and customer.
+     *
+     *
+     * <p>Time frames include:</p>
+     * <ul>
+     *   <li>All: Shows all appointments</li>
+     *   <li>Month: Shows appointments in the current month and year</li>
+     *   <li>Week: Shows appointments in the next 7 days</li>
+     * </ul>
+     */
 
     private void filterAppointmentsByTimeFrame() {
 
@@ -227,9 +343,21 @@ public class apptMainController implements Initializable {
 
         }
 
-
+    /**
+     * Handles the exit application action.
+     * Terminates the application immediately when the exit button is clicked.
+     *
+     * @param event The ActionEvent object generated when the exit button is clicked
+     */
 
     public void onActionExitAppt(ActionEvent event) {System.exit(0);}
+
+    /**
+     * Navigates to the main menu screen when the main button is clicked.
+     *
+     * @param event The ActionEvent object generated when the main button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
@@ -241,6 +369,13 @@ public class apptMainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Navigates to the customer records screen when the customer records button is clicked.
+     *
+     * @param event The ActionEvent object generated when the customer records button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
+
     public void onActionToCustRecs(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustMain.fxml"));
 
@@ -250,6 +385,13 @@ public class apptMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Navigates to the add appointment screen when the add appointment button is clicked.
+     *
+     * @param event The ActionEvent object generated when the add appointment button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
 
     public void onClickAddAppts(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AddAppt.fxml"));
@@ -261,6 +403,16 @@ public class apptMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Navigates to the modify appointment screen.
+     *
+     * <p>This method checks if an appointment is selected. If not,
+     * it displays an error message.</p>
+     *
+     * @param event The ActionEvent object generated when the modify appointment button is clicked
+     * @throws IOException If an error occurs during FXML loading or scene switching
+     */
 
     public void onClickToModAppt(ActionEvent event) throws IOException {
 
@@ -286,6 +438,15 @@ public class apptMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Handles the delete appointment action.
+     *
+     * <p>If an appointment is selected, it displays a
+     * confirmation dialog and, if confirmed, deletes the appointment.</p>
+     *
+     * @param event The ActionEvent object generated when the delete appointment button is clicked
+     */
 
     public void onClickToDelAppt(ActionEvent event) {
 
