@@ -108,11 +108,7 @@ public class AppointmentDAO {
             LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
             LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
 
-            System.out.println("Adding appointment");
-            System.out.println("Local start: " + start);
-            System.out.println("UTC start: " + startUTC);
-            System.out.println("Local end: " + end);
-            System.out.println("UTC end: " + endUTC);
+
 
 
             String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +

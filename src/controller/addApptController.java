@@ -26,11 +26,9 @@ import java.net.URL;
 import javafx.collections.ObservableList;
 import org.w3c.dom.Text;
 
-import java.time.LocalDate;
+import java.time.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -105,6 +103,38 @@ public class addApptController implements Initializable {
 
     }
 
+    private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
+        if (title.isEmpty() || description.isEmpty() || start == null || end == null){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Fields cannot be blank");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (!AppointmentDAO.isInBizHours(start, end)) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Out of Range");
+            alert.setContentText("This appointment is not within Business Hours");
+            alert.showAndWait();
+            return false;
+        }
+
+        int appointmentId = 0;
+
+        if (AppointmentDAO.appointIsOverlapping(customerId, start, end, appointmentId)) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Appointment cannot be booked");
+            alert.setContentText("There is already a booking at this time for this customer");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+
+
 
     private void populateTimeComboBoxes() {
         LocalTime start = LocalTime.of(0, 0);
@@ -155,10 +185,15 @@ public class addApptController implements Initializable {
             return;
         }
 
-        int userID = (Integer) userIDComboBox.getValue();
-
         LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
         LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
+
+        // Convert to UTC before saving
+
+        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
+                .withZoneSameInstant(ZoneId.of("UTC"));
+        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
+                .withZoneSameInstant(ZoneId.of("UTC"));
 
         if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
 
@@ -169,6 +204,8 @@ public class addApptController implements Initializable {
             return;
         }
 
+        int userID = (Integer) userIDComboBox.getValue();
+
         /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         String formattedStart = startDateTime.format(formatter);
@@ -178,7 +215,16 @@ public class addApptController implements Initializable {
             return;
         }
 
-        AppointmentDAO.addAppointment(title, description, location, contact.getContactId(), type, startDateTime, endDateTime, customer.getCustomerId(), userID);
+        AppointmentDAO.addAppointment(
+                title,
+                description,
+                location,
+                contact.getContactId(),
+                type,
+                utcStart.toLocalDateTime(),
+                utcEnd.toLocalDateTime(),
+                customer.getCustomerId(),
+                userID);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 
@@ -188,37 +234,6 @@ public class addApptController implements Initializable {
         stage.setTitle("Main Appt Page");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
-        if (title.isEmpty() || description.isEmpty() || start == null || end == null){
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Fields cannot be blank");
-            alert.showAndWait();
-            return false;
-       }
-
-        if (!AppointmentDAO.isInBizHours(start, end)) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Out of Range");
-            alert.setContentText("This appointment is not within Business Hours");
-            alert.showAndWait();
-            return false;
-        }
-
-        int appointmentId = 0;
-
-        if (AppointmentDAO.appointIsOverlapping(customerId, start, end, appointmentId)) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Appointment cannot be booked");
-            alert.setContentText("There is already a booking at this time for this customer");
-            alert.showAndWait();
-            return false;
-        }
-        return true;
     }
 
 

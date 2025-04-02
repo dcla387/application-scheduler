@@ -114,35 +114,7 @@ public class modApptController implements Initializable {
 
 
 
-        /*ZoneId utcZone = ZoneOffset.UTC;
-        ZoneId localZone = ZoneId.systemDefault();
 
-
-        ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
-
-        ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
-        LocalDateTime localStart = localZonedStart.toLocalDateTime();
-
-
-        ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
-
-        ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
-        LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
-
-
-
-        private void populateTimeComboBoxes() {
-            LocalTime start = LocalTime.of(0, 0);
-            LocalTime end = LocalTime.of(23, 30);
-
-            while (!start.isAfter(end)) {
-                String timestr = start.toString();
-                startTimeComboBox.getItems().add(timestr);
-                endTimeComboBox.getItems().add(timestr);
-
-                start = start.plusMinutes(15);
-            }
-        }*/
 
         LocalDateTime start = appointment.getStart();
         LocalDateTime end = appointment.getEnd();
@@ -158,71 +130,7 @@ public class modApptController implements Initializable {
 
     }
 
-    /*@FXML
-    private void onClickSaveAppt(ActionEvent event) throws IOException {
-        Customer customer = customerComboBox.getValue();
 
-        if (customer == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning");
-            alert.setContentText("You will need to make a selection");
-            alert.showAndWait();
-            return;
-        }
-
-
-        String title = titleTextField.getText();
-        String description = descriptionTextField.getText();
-        String location = locationTextField.getText();
-        Contact contact = contactComboBox.getValue();
-        String type = typeTextField.getText();
-        LocalDate startDate = startDatePicker.getValue();
-        String startTime = startTimeComboBox.getValue();
-        LocalDate endDate = endDatePicker.getValue();
-        String endTime = endTimeComboBox.getValue();
-
-
-        if (title.isEmpty() || description.isEmpty() || location.isEmpty() ||
-                contact == null || type.isEmpty() || startDate == null ||
-                startTime == null || endDate == null || endTime == null) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("There is an Error");
-            alert.setContentText("All fields must be filled in");
-            alert.showAndWait();
-            return;
-        }
-
-        int userID = (Integer) userIDComboBox.getValue();
-
-        LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
-        LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
-
-        if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("You have an Error");
-            alert.setContentText("End Time needs to be later than Start Time");
-            alert.showAndWait();
-            return;
-        }
-
-        int appointmentId = selectedAppointment.getAppointmentId();
-
-        if (!validateAppointment(title, description, startDateTime, endDateTime, customer.getCustomerId())) {
-            return;
-        }
-        AppointmentDAO.updateAppointment(appointmentId, title, description, location, contact.getContactId(), type, startDateTime, endDateTime, customer.getCustomerId(), userID);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.centerOnScreen();
-        Scene scene = new Scene(root);
-        stage.setTitle("Main Appt Page");
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
     private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
         if (title.isEmpty() || description.isEmpty() || start == null || end == null){
@@ -336,10 +244,7 @@ public class modApptController implements Initializable {
                 contact.getContactId(),
                 type,
                 utcStart.toLocalDateTime(), // Convert back to LocalDateTime but in UTC
-
                 utcEnd.toLocalDateTime(),   // Convert back to LocalDateTime but in UTC
-                //startDateTime,
-                //endDateTime,
                 customerId,
                 userId
         );
