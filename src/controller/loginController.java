@@ -108,7 +108,13 @@ public class loginController implements Initializable {
                 new PrintWriter(new FileOutputStream("login_activity.txt", true), true)
                         .println(new Date().toString() + " - ✔ Good Login: " + userInput);
 
-                Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
+                int userId = UserDAO.getUserId(userInput);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+                Parent root = loader.load();
+
+                mainController mainController = loader.getController();
+                mainController.setUserId(userId);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);

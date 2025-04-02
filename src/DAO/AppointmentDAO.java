@@ -428,6 +428,15 @@ public class AppointmentDAO {
         LocalTime bizStart = LocalTime.of(8, 0);
         LocalTime bizEnd = LocalTime.of(22, 0);
 
+        System.out.println("Business hours check:");
+        System.out.println("Local start: " + start);
+        System.out.println("ET start: " + startEast);
+        System.out.println("Local end: " + end);
+        System.out.println("ET end: " + endEast);
+        System.out.println("Business hours: " + bizStart + " to " + bizEnd);
+        System.out.println("Start in range: " + (!startTimeEast.isBefore(bizStart)));
+        System.out.println("End in range: " + (!endTimeEast.isAfter(bizEnd)));
+
         return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
 
     }

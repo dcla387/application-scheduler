@@ -24,4 +24,34 @@ public class UserDAO {
         }
     }
 
+    public static int getUserId(String username) {
+
+        int userId = 1;
+
+        try {
+            Connection connection = JDBC.getConnection();
+
+            String search = "Select User_ID From users Where User_Name = ?";
+            PreparedStatement statement = connection.prepareStatement(search);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+
+                userId = resultSet.getInt("User_ID");
+
+            }
+
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException error) {
+
+            System.out.println("Error in processing User_ID: " + error.getMessage());
+        }
+
+        return userId;
+
+    }
+
 }
