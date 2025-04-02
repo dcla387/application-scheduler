@@ -33,35 +33,68 @@ import java.sql.SQLException;
 
 /**
  * This class is a controleer for the Login Screen.
- * Simply is a standard username and password login.
+ * It is a standard username and password login authentication.
+ * Has localization support for a French language login prompts.
+ * At login it will check for appointments within 15 mins of login
  * */
 
 public class loginController implements Initializable {
-//need to pull 2 users from database add passwords to those profiles in the database - 1 - ADMIN 2 - TEST
-    //then take this hardcoded username/password out
-    //private static final String ADMIN_TEST_USER = "admin";
-    //private static final String ADMIN_TEST_PASS = "password123";
+
+
+    /**
+     * Text field for entering username
+     */
 
     @FXML
     private TextField userName;
 
+    /**
+     * Password field for entering password
+     */
+
     @FXML
     private PasswordField password;
+
+    /**
+     * Label for the title of the login form
+     */
 
     @FXML
     private Label title;
 
+    /**
+     * Button to submit login credentials
+     */
+
     @FXML
     private Button login;
+
+    /**
+     * Button to submit logoff trigger
+     */
 
     @FXML
     private Button logoff;
 
+    /**
+     * Label for to display User's location
+     */
+
     @FXML
     private Label location;
 
+    /**
+     * Label for toheuser
+     */
+
+
     @FXML
     private Label userLabel;
+
+    /**
+     * Label for the password
+     */
+
     @FXML
     private Label passLabel;
 
@@ -129,6 +162,9 @@ public class loginController implements Initializable {
 
             if (UserDAO.userValidation(userInput, passInput)) {
 
+                /**
+                 * Logs succesesful login to log
+                 * */
                 new PrintWriter(new FileOutputStream("login_activity.txt", true), true)
                         .println(new Date().toString() + " - ✔ Good Login: " + userInput);
 
