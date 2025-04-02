@@ -185,6 +185,8 @@ public class addApptController implements Initializable {
             return;
         }
 
+        int userID = (Integer) userIDComboBox.getValue();
+
         LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
         LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
 
@@ -203,13 +205,6 @@ public class addApptController implements Initializable {
             alert.showAndWait();
             return;
         }
-
-        int userID = (Integer) userIDComboBox.getValue();
-
-        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        String formattedStart = startDateTime.format(formatter);
-        String formattedEnd = endDateTime.format(formatter);*/
 
         if (!validateAppointment(title, description, startDateTime, endDateTime, customer.getCustomerId())) {
             return;
