@@ -158,7 +158,7 @@ public class modApptController implements Initializable {
 
     }
 
-    @FXML
+    /*@FXML
     private void onClickSaveAppt(ActionEvent event) throws IOException {
         Customer customer = customerComboBox.getValue();
 
@@ -222,7 +222,7 @@ public class modApptController implements Initializable {
         stage.setTitle("Main Appt Page");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
     private boolean validateAppointment (String title, String description, LocalDateTime start, LocalDateTime end, int customerId) {
         if (title.isEmpty() || description.isEmpty() || start == null || end == null){
