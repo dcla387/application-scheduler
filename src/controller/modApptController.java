@@ -302,6 +302,16 @@ public class modApptController implements Initializable {
         LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.parse(startTime));
         LocalDateTime endDateTime = LocalDateTime.of(endDate, LocalTime.parse(endTime));
 
+        // Convert to UTC before saving
+
+        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
+
+                .withZoneSameInstant(ZoneId.of("UTC"));
+
+        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
+
+                .withZoneSameInstant(ZoneId.of("UTC"));
+
         if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -325,15 +335,18 @@ public class modApptController implements Initializable {
                 location,
                 contact.getContactId(),
                 type,
-                startDateTime,
-                endDateTime,
+                utcStart.toLocalDateTime(), // Convert back to LocalDateTime but in UTC
+
+                utcEnd.toLocalDateTime(),   // Convert back to LocalDateTime but in UTC
+                //startDateTime,
+                //endDateTime,
                 customerId,
                 userId
         );
 
-        System.out.println("Modifying appointment: Local time values:");
+        /*System.out.println("Modifying appointment: Local time values:");
         System.out.println("Start: " + startDateTime);
-        System.out.println("End: " + endDateTime);
+        System.out.println("End: " + endDateTime);*/
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
