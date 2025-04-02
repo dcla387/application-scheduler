@@ -31,6 +31,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+/**
+ * This class is a controleer for the Login Screen.
+ * Simply is a standard username and password login.
+ * */
 
 public class loginController implements Initializable {
 //need to pull 2 users from database add passwords to those profiles in the database - 1 - ADMIN 2 - TEST
@@ -62,7 +66,20 @@ public class loginController implements Initializable {
     private Label passLabel;
 
 
+    /**
+     * Button for exiting the application upon Click.
+     * @param event This is the trigger that sets off the action for this method
+     * */
+
         public void onActionExit(ActionEvent event) {System.exit(0);}
+
+
+    /**
+     * This Initializes the controller class
+     * @param url The location for resolving relative paths
+     * @param resourceBundle for localizing the code. In this case looking to see if French needs to be triggered
+     */
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -97,6 +114,13 @@ public class loginController implements Initializable {
         }
 
     }
+
+    /**
+     * Handler for the Button Click to take a User to the Main Screen.
+     * Will handle validation of login credentials true or false and log the findings
+     * This also will search for any appointments that are occurring in the next 15 mins after login
+     *
+     */
 
     public void toMainButtonClick(ActionEvent event) throws IOException {
 

@@ -5,7 +5,21 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**This is a Data Access Object for User related functions.
+ * The serves as user authentication and also gets information
+ * about the user to be used in another part of this project.
+ */
+
 public class UserDAO {
+
+/**
+ * This class is used to validate the user against the information stored in the SQL
+ * Database.  It's to validate the User and the PAssword.
+ * @param userName username to validate
+ * @param password password validation
+ * @return true if true and false if it fails validation
+ */
+
     public static boolean userValidation(String userName, String password) {
         try {
             Connection connection = JDBC.getConnection();
@@ -23,6 +37,13 @@ public class UserDAO {
             return false;
         }
     }
+
+    /**
+     * This will get the user information from the database
+     * @param username This is used to lookup the User
+     * @return username if it is found in the database, 1 is used as a default value
+     *
+     */
 
     public static int getUserId(String username) {
 
