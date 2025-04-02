@@ -124,7 +124,7 @@ public class mainController implements Initializable {
      * If one or more upcoming appointments are found, an alert shows appointment
      * IDs, dates, and times is displayed.</p>
      *
-     * @param userId The ID of the user to check appointments for
+     * @param userId The ID of the user to check appointments
      */
 
     private void checkForAppointments(int userId) {
@@ -190,6 +190,12 @@ public class mainController implements Initializable {
         }
         }
 
+        /**
+         * Navigates to the Appointment Main Screen when button is clicked.
+         *
+         * @param event object generated when the Appointments button is clicked
+         */
+
     public void onClickAppts(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ApptMain.fxml"));
 
@@ -200,6 +206,12 @@ public class mainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Navigates to the Customer Main Screen when button is clicked.
+     *
+     * @param event object generated when the Customer button is clicked
+     */
 
 
     public void onClickCusts(ActionEvent event) throws IOException {
@@ -213,6 +225,11 @@ public class mainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Navigates to the Reports Main Screen when button is clicked.
+     *
+     * @param event object generated when the Reports button is clicked
+     */
 
     public void onClickToReports(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Report.fxml"));

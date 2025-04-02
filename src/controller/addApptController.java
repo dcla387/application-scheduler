@@ -35,48 +35,126 @@ import java.time.format.DateTimeFormatter;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * This class is a controller for the adding of Appointments.
+ *
+ * <p>This controller manages the UI for appointment handling while adding appointments.
+ * It performs validations and enforces business time scheduling and performs overlapping appointment checks.</p>
+ *
+ *
+ * <p>Handles time zone conversions as well.</p>
+ *
+ * @author Donna Clark
+ * @version  1.0
+ * */
 
 public class addApptController implements Initializable {
+
+    /**
+     * ComboBox for selecting a customer for the appointment.
+     * Populated with all available customers from the database.
+     */
 
     @FXML
     private ComboBox<Customer> customerComboBox;
 
+    /**
+     * TExt Field for displaying the appt ID
+     */
+
     @FXML
     private TextField apptIDTextField;
+
+    /**
+     * TextField for entering the appointment title.
+     */
 
     @FXML
 
     private TextField titleTextField;
 
+    /**
+     * TextField for entering the description.
+     */
+
     @FXML
     private TextField descriptionTextField;
+
+    /**
+     * TextField for entering the location.
+     */
 
     @FXML
     private TextField locationTextField;
 
+    /**
+     * ComboBox for selecting a contact person for the appointment.
+     * Populated with all available contacts from the database.
+     */
+
     @FXML
     private ComboBox<Contact> contactComboBox;
+
+    /**
+     * TextField for entering the appointment type.
+     */
 
     @FXML
     private TextField typeTextField;
 
+    /**
+     * Date picker for selecting the start of the appointment
+     */
+
     @FXML
     private DatePicker startDatePicker;
+
+    /**
+     * ComboBox for selecting the start time of the appointment.
+     * Populated with 15-minute increments.
+     */
 
     @FXML
     private ComboBox<String> startTimeComboBox;
 
+    /**
+     * Date picker for selecting the end of the appointment
+     */
+
     @FXML
     private DatePicker endDatePicker;
+
+    /**
+     * ComboBox for selecting the end time of the appointment.
+     * Populated with 15-minute increments.
+     */
 
     @FXML
 
     private ComboBox<String> endTimeComboBox;
 
+    /**
+     * ComboBox for selecting the user Id associated with the appointment.
+     * Supporting 2 users at the moment 1 and 2.
+     */
+
     @FXML
     private ComboBox userIDComboBox;
 
-
+    /**
+     * This Initializes the controller class to set up the interface.
+     *
+     * <p>This is called after FXML is loaded and does the following:</p>
+     * <ul>
+     *     <li>Populates the customer combo boxes with customers</li>
+     *     <li>Populates contact combo box with contacts</li>
+     *     <li>Populates the time combo boxes</li>
+     *     <li>Sets default values for dates and times</li>
+     *     <li>Populates the combo boxes with available user IDs</li>
+     * </ul>
+     * @param url The location for resolving relative paths
+     * @param resourceBundle for localizing the code. In this case looking to see if French needs to be triggered
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerComboBox.setItems(CustomerDAO.getAllCustomers());
