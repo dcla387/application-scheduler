@@ -112,16 +112,18 @@ public class modApptController implements Initializable {
             }
         }
 
+
+
         /*ZoneId utcZone = ZoneOffset.UTC;
         ZoneId localZone = ZoneId.systemDefault();
 
-        LocalDateTime utcStart = appointment.getStart();
+
         ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
 
         ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
         LocalDateTime localStart = localZonedStart.toLocalDateTime();
 
-        LocalDateTime utcEnd = appointment.getEnd();
+
         ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
 
         ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
@@ -142,11 +144,14 @@ public class modApptController implements Initializable {
             }
         }*/
 
-        startDatePicker.setValue(appointment.getStart().toLocalDate());
-        endDatePicker.setValue(appointment.getEnd().toLocalDate());
+        LocalDateTime start = appointment.getStart();
+        LocalDateTime end = appointment.getEnd();
 
-        startTimeComboBox.setValue(appointment.getStart().toLocalTime().toString());
-        endTimeComboBox.setValue(appointment.getEnd().toLocalTime().toString());
+        startDatePicker.setValue(start.toLocalDate());
+        endDatePicker.setValue(end.toLocalDate());
+
+        startTimeComboBox.setValue(start.toLocalTime().toString());
+        endTimeComboBox.setValue(end.toLocalTime().toString());
 
         userIDComboBox.setValue(appointment.getUserId());
 
@@ -319,7 +324,7 @@ public class modApptController implements Initializable {
                 description,
                 location,
                 contact.getContactId(),
-                type,  // This should now get updated
+                type,
                 startDateTime,
                 endDateTime,
                 customerId,

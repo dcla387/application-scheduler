@@ -21,6 +21,7 @@ import java.util.Map;
 
 
 
+
 public class AppointmentDAO {
 
     public static ObservableList<Appointment> getAllAppointments() {
