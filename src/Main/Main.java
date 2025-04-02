@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import DAO.JDBC;
 
+/**This is an application that holds customers and their appointments */
+
 public class Main extends Application {
 
     @Override
