@@ -223,8 +223,13 @@ public class loginController implements Initializable {
             }
 
             /**
+             * Displays an Error alert for the Login Validation.
              *
+             * <p>This method shows an Alert dialog to the user with the verbiage defined in the above catch. It provides a title, header and content in the message.</p>
              *
+             * @param title Title text for error dialog
+             * @param header  Header text for error dialog
+             * @param content Content text for error dialog
              *
              * */
 
