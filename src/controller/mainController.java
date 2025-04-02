@@ -54,19 +54,13 @@ public class mainController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime nextFifteen = now.plusMinutes(15);
 
-        System.out.println("Checking appointments for user ID: " + userId);
-        System.out.println("Current time: " + now);
-        System.out.println("15 minutes from now: " + nextFifteen);
+
 
         ObservableList<Appointment> allAppointments = AppointmentDAO.getAllAppointments();
 
-        System.out.println("Total appointments in system: " + allAppointments.size());
+
 
         for (Appointment a : allAppointments){
-            System.out.println("Appt ID: " + a.getAppointmentId() +
-                                ", User ID: " + a.getUserId() +
-                                ", Start: " + a.getStart() +
-                                ", Customer: " + a.getCustomerName());
 
         }
 
@@ -74,24 +68,21 @@ public class mainController implements Initializable {
 
         for (Appointment appointment : allAppointments) {
 
-            System.out.println("Checking appt ID: " + appointment.getAppointmentId());
-            System.out.println("Appt user ID: " + appointment.getUserId() + ", Login user ID: " + userId);
+
 
             if(appointment.getUserId() == userId) {
                 LocalDateTime appointmentStart = appointment.getStart();
 
-                System.out.println("Appointment start: " + appointmentStart);
-                System.out.println("Is after now: " + appointmentStart.isAfter(now));
-                System.out.println("Is before nextFifteen: " + appointmentStart.isBefore(nextFifteen));
+
 
                 if (appointmentStart.isAfter(now) && appointmentStart.isBefore(nextFifteen)) {
-                    System.out.println("Found upcoming appointment: " + appointment.getAppointmentId());
+
                     upcomingAppointments.add(appointment);
                 }
             }
         }
 
-        System.out.println("Found " + upcomingAppointments.size() + " upcoming appointments");
+
 
         if (upcomingAppointments.isEmpty()) {
 
