@@ -7,8 +7,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
+/**
+ * Data Access Object class for managing division data.
+ *
+ * <p>This class provides methods for retrieveing division information from the database.
+ * Divisions of the first-level admin divisions like states and provinces that are associated with a particular country.</p>
+ *
+ * @author Donna Clark
+ * @version 1.0
+ */
 public class DivisionDAO {
+
+    /**
+     * Retrieves all division from the database.
+     *
+     * <p>This method executes a SQL query to get all division records from the database for use in the application.</p>
+     *
+     * @return ObservableList containing all divisions in the database
+     */
 
     public static ObservableList<Division> getDivisions() {
         ObservableList<Division> divisionsList = FXCollections.observableArrayList();
@@ -33,6 +49,15 @@ public class DivisionDAO {
 
         return divisionsList;
     }
+
+    /**
+     * Retrieves all divisions associated with a specific country.
+     *
+     * <p>This method is used to populate combo boxes for the User to make accurate associations of the customer divisions.</p>
+     *
+     * @param countryID The ID of the country to filet the divisions
+     * @return ObservableList containing divisions associated with the specified country
+     */
 
     public static ObservableList<Division> getDivisionsByCountry(int countryID) {
         ObservableList<Division> divisionsList = FXCollections.observableArrayList();

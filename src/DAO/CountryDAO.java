@@ -8,7 +8,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
+/**
+ * Data Access Object class for managing country data.
+ *
+ * <p>This class provides methods for retrieving country information from the database</p>
+ *
+ * @author Donna Clark
+ * @version 1.0
+ */
 public class CountryDAO {
+
+    /**
+     * Retrieves all countries from the database.
+     * @return ObservableList containing all countries in the database
+     */
 
     public static ObservableList<Country> getCountries(){
         ObservableList<Country> countryList = FXCollections.observableArrayList();
@@ -32,6 +45,13 @@ public class CountryDAO {
 
         return countryList;
     }
+
+    /**
+     * Retrieves the country associated with a specified division ID.
+     *
+     * @param divisionId The ID of the division whose country is determined
+     * @return Country object associated with the division
+     */
 
     public static Country getCountryByDivisionId(int divisionId) {
         try {
