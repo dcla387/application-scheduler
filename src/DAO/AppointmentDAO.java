@@ -19,10 +19,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Data Access Object class for managing appointment data.
+ *
+ * <p>This class provides method for retrieving, creating, updating, and deleting appointments.
+ * It also includes methods for handling time zone conversions, validations, overlap deteection and other appointment queries</p>
+ *
+ * @author Donna Clark
+ * @version 1.0
+ */
 
 
 public class AppointmentDAO {
+
+    /**
+     * Retrieves all appointments from the database.
+     *
+     * <p>This method fetches all appointment records from the database and performs time conversions.</p>
+     *
+     * <p>It also retrieves associated contact and customer names using their respective IDs</p>
+     *
+     * @return returns a list containing all Appointments
+     */
 
     public static ObservableList<Appointment> getAllAppointments() {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
@@ -98,6 +116,23 @@ public class AppointmentDAO {
         return appointmentList;
     }
 
+    /**
+     * Adds a new appointment to the database.
+     *
+     * <p>This method inserts a new appointment record into the databse.</p>
+     *
+     *
+     * @param title  The title of the appointment
+     * @param description Description of the appointment
+     * @param location Location of the appointment
+     * @param contactId contact ID associated with the appointment
+     * @param type Type of appointment
+     * @param start Start date and time of the appointment
+     * @param end  End date and time of the appointment
+     * @param customerId Customer ID associated with the appointment
+     * @param userId User ID associated with the appointment
+     */
+
     public static void addAppointment(String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
             Connection connection = JDBC.getConnection();
@@ -121,6 +156,24 @@ public class AppointmentDAO {
 
         }
     }
+
+    /**
+     * Updates an exsisting appointment in the database.
+     *
+     * <p>This method updatees and existing appointment record.</p>
+     *
+     *
+     * @param appointmentId  The ID of the appointment to update
+     * @param title Updated title of the appointment
+     * @param description Updated description of the appointment
+     * @param location Updated location of the appointment
+     * @param contactId Updated contact ID associated with the appointment
+     * @param type Updated type of appointment
+     * @param start Updated start time and date of the appointment
+     * @param end Updated end time and date of the appointment
+     * @param customerId Customer ID associated with the appointment
+     * @param userId User Id associated with the appointment
+     */
 
     public static void updateAppointment(int appointmentId, String title, String description, String location, int contactId, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         try {
@@ -158,6 +211,12 @@ public class AppointmentDAO {
         }
     }
 
+    /**
+     * Deletes an appointment from the database
+     *
+     * @param appointmentId ID of the appointment to delete
+     */
+
     public static void deleteAppointment(int appointmentId) {
         try {
             Connection connection = JDBC.getConnection();
@@ -168,6 +227,15 @@ public class AppointmentDAO {
             System.out.println("Error: " + error.getMessage());
         }
     }
+
+    /**
+     * Retrieve appointments for a specific customer name
+     *
+     * <p>Serves as a filter to filter by customer name</p>
+     *
+     * @param customerName The name of the customer to use as a filter for the appointments
+     * @return A list containing the appointments belonging to the filtered customer
+     */
 
     public static ObservableList<Appointment> getAppointmentsByCustomerName(String customerName) {
 
@@ -182,6 +250,14 @@ public class AppointmentDAO {
         return filteredAppointments;
 
     }
+
+    /**
+     * Generates a report of appointment counts by month and type.
+     *
+     * <p>Queries the database to count appointments grouped by Month and Type - used in a Map or dictionary structture.  Outer key in the month.</p>
+     *
+     * @return A Map containing appointment counts organized by month and type
+     */
 
     public static Map<String, Map<String, Integer>> getAppointmentsByMonthAndType() {
         Map<String, Map<String, Integer>> reportData = new HashMap<>();
@@ -213,6 +289,15 @@ public class AppointmentDAO {
         return reportData;
     }
 
+
+    /**
+     * Retrieves all contact names from the database.
+     *
+     * <p>This method queries the contact table to get all contact names, sorted alphabetically</p>
+     * @return ObservableList containing all contact names
+     *
+     */
+
     public static ObservableList<String> getAllContactNames() {
         ObservableList<String> contactNames = FXCollections.observableArrayList();
 
@@ -234,6 +319,13 @@ public class AppointmentDAO {
         return contactNames;
     }
 
+    /**
+     * Retrieve a contact ID based on the contact name.
+     *
+     * @param contactName The name of the contact to look up
+     * @return The contact ID, or -1 if the contact is not found.
+     */
+
     public static int getContactIdFromName(String contactName) {
         int contactId = -1;
 
@@ -254,6 +346,13 @@ public class AppointmentDAO {
         return contactId;
     }
 
+    /**
+     * Retrieves all appointments for a specific contact.
+     *
+     * <p>does a query to find all appointment assoicated with the specified contact ID, sorted by Start Time</p>
+     * @param contactId The ID of the contact to retrieve the appointements
+     * @return ObservableList containt the appointments for the specified contact
+     */
 
     public static ObservableList<Appointment> getAppointmentByContactId(int contactId) {
 
@@ -313,6 +412,22 @@ public class AppointmentDAO {
 
     }
 
+    /**
+     * Generates a report of customer counts by country.
+     *
+     * <p>This method creates a report showing how many customers are associated with each country.</p>
+     *
+     * <p>Report does the following:</p>
+     * <ul>
+     *     <li>Retrieves all customers</li>
+     *     <li>For each customer, determines their country based on Division ID</li>
+     *     <li>Counts the number of customers</li>
+     *     <li>formates the report into a User friendly dialog box</li>
+     * </ul>
+     *
+     * @param report The Stringbuilder to append the report contenct
+     */
+
     public static void getCustomerCountByCountry(StringBuilder report) {
 
         try {
@@ -354,6 +469,13 @@ public class AppointmentDAO {
         }
 
     }
+
+    /**
+     * Retrieves all appointments for a specific customer.
+     *
+     * @param customerId The ID of the customer to retrieve appointments
+     * @return ObservabileList containing the appointments for the specified customer
+     */
 
     public static ObservableList<Appointment> getAppointmentsByCustomerId(int customerId) {
 
@@ -412,6 +534,16 @@ public class AppointmentDAO {
 
     }
 
+    /**
+     * Checks if an appointment is made within business hours.
+     *
+     * <p>Validates that an appointments start and end times falls within the prescribed business hours</p>
+     *
+     * @param start The start date and time in the users local time
+     * @param end The end date and time in the suers local time
+     * @return True - if the appointment is within business hours, false otherwise
+     */
+
     public static boolean isInBizHours(LocalDateTime start, LocalDateTime end) {
 
         ZoneId localZone = ZoneId.systemDefault();
@@ -432,6 +564,20 @@ public class AppointmentDAO {
         return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
 
     }
+
+    /**
+     * Checks if an appointment overlaps with an existing appointment for the same customer.
+     *
+     * <p>this method verifies that a proposed appointment time for a specified customer does not overlap
+     * with another appointment for that same customer.</p>
+     *
+     *
+     * @param customerId The ID of the customer to check for overlaps
+     * @param start The proposed start date and time of the appointment in user's local time
+     * @param end  The proposed end date and time of the appointment in the user's local time
+     * @param appointmentId The ID of the appointment being modified
+     * @return True if there IS an overlapping appt, false if NOT
+     */
 
     public static boolean appointIsOverlapping (int customerId, LocalDateTime start, LocalDateTime end, int appointmentId) {
 
