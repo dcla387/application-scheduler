@@ -11,6 +11,7 @@ AUTHOR - Donna Clark, 612-978-7280, dcla387@wgu.edu
 VERSION -> 1.0
 DATE -> April 3, 2025
 Built in the WGU VM Lab environment supplied by the University
+JAVADOCS LOCATION -> file:///C:/Users/LabUser/Desktop/JavaDocs
 
 IDE USED IN THIS PROJECT
 
@@ -25,13 +26,57 @@ Cores: 4
 
 Kotlin: 232-1.9.0-IJ9921.47
 
-JavaFX VERSION
+JavaFX VERSION INFORMATION
+
+Product Version
+JavaFX Scene Builder 17.0.0
+
+Build Information
+Version 17.0.0
+Date: 2021-09-29 13:41:58
+JavaFX Version: 17
+Java Version: 17, OpenJDK Runtime Environment
+
+Logging
+The default configuration stores logging output in a file named scenebuilder-17.0.0.log (possibly followed by a trailing '.' and a digit).
+The default file path is C:\Users\LabUser\.scenebuilder\logs\scenebuilder-17.0.0.log
+
+JavaFX
+17
+
+Java
+17+35-2724, Oracle Corporation
+
+Java Library Path(s):
+	C:\Users\LabUser\AppData\Local\SceneBuilder\runtime\bin
+	C:\Users\LabUser\AppData\Local\SceneBuilder\runtime\lib
+
+Operating System
+Windows 10, amd64, 10.0
 
 
 
-•  directions for how to run the program
+RUNNING THE PROGRAM
 
-•  a description of the additional report of your choice you ran in part A3f
+The Program should be run in the VM lab environment with IntelliJ - Run by the normal course of Clicking the GREEN button to Run.
+There are 2 authenticated USERs defined in the Database.
 
-•  the MySQL Connector driver version number, including the update number (e.g., mysql-connector-java-8.1.23)
+Please use one of the following for login testing:
 
+USERNAME -> test
+PASSWORD -> test
+
+OR
+
+USERNAME -> admin
+PASSWORD -> admin
+
+ADDITIONAL REPORT
+
+The additional report is a count of the customers grouped by country.  This report is included in the report menu for easy identification.
+
+MySQL VERSION INFORMATION
+
+Oracle's MySQL Workbench 8.0
+Version 8.0.27 Build 1228725 CE
+LAST UPDATED -> July 2021
