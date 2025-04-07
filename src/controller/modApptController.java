@@ -366,13 +366,13 @@ public class modApptController implements Initializable {
 
         // Convert to UTC before saving
 
-        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
-
-                .withZoneSameInstant(ZoneId.of("UTC"));
-
-        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
-
-                .withZoneSameInstant(ZoneId.of("UTC"));
+//        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
+//
+//                .withZoneSameInstant(ZoneId.of("UTC"));
+//
+//        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
+//
+//                .withZoneSameInstant(ZoneId.of("UTC"));
 
         if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -397,8 +397,8 @@ public class modApptController implements Initializable {
                 location,
                 contact.getContactId(),
                 type,
-                utcStart.toLocalDateTime(), // Convert back to LocalDateTime but in UTC
-                utcEnd.toLocalDateTime(),   // Convert back to LocalDateTime but in UTC
+                startDateTime, // Convert back to LocalDateTime but in UTC
+                endDateTime,   // Convert back to LocalDateTime but in UTC
                 customerId,
                 userId
         );

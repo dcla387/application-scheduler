@@ -58,36 +58,12 @@ public class AppointmentDAO {
                 int customerId = resultSet.getInt("Customer_ID");
                 String customerName = CustomerDAO.getCustomerNameFromId(customerId);
 
-                //System.out.println("Raw database time: " + resultSet.getTimestamp("Start").toLocalDateTime());
 
-                /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                String startInput = resultSet.getString("Start");
-                String endInput = resultSet.getString("End");
 
-                LocalDateTime startDateTimeUTC = LocalDateTime.parse(startInput, formatter);
-                LocalDateTime endDateTimeUTC = LocalDateTime.parse(endInput, formatter);
+                LocalDateTime localStart = resultSet.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime localEnd = resultSet.getTimestamp("End").toLocalDateTime();
 
-                ZonedDateTime utcZonedStart = startDateTimeUTC.atZone(ZoneId.of("UTC"));
-                ZonedDateTime utcZonedEnd = endDateTimeUTC.atZone(ZoneId.of("UTC"));
-                ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(ZoneId.systemDefault());
-                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(ZoneId.systemDefault());
 
-                LocalDateTime localStart = localZonedStart.toLocalDateTime();
-                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();*/
-
-                LocalDateTime utcStart = resultSet.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime utcEnd = resultSet.getTimestamp("End").toLocalDateTime();
-
-                ZoneId utcZone = ZoneId.of("UTC");
-                ZoneId localZone = ZoneId.systemDefault();
-
-                ZonedDateTime utcZonedStart = utcStart.atZone(utcZone);
-                ZonedDateTime localZonedStart = utcZonedStart.withZoneSameInstant(localZone);
-                LocalDateTime localStart = localZonedStart.toLocalDateTime();
-
-                ZonedDateTime utcZonedEnd = utcEnd.atZone(utcZone);
-                ZonedDateTime localZonedEnd = utcZonedEnd.withZoneSameInstant(localZone);
-                LocalDateTime localEnd = localZonedEnd.toLocalDateTime();
 
 
                 Appointment appointment = new Appointment(
@@ -137,19 +113,23 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId localZone = ZoneId.systemDefault();
-            ZoneId utcZone = ZoneId.of("UTC");
 
-            LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
+           String insert = "INSERT INTO appointments " +
+                    "(Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+            PreparedStatement preparedStatement = connection.prepareStatement(insert);
+            int paramindex = 1;
+            preparedStatement.setString(paramindex++, title);
+            preparedStatement.setString(paramindex++, description);
+            preparedStatement.setString(paramindex++, location);
+            preparedStatement.setInt(paramindex++, contactId);
+            preparedStatement.setString(paramindex++, type);
+            preparedStatement.setTimestamp(paramindex++, Timestamp.valueOf(start));
+            preparedStatement.setTimestamp(paramindex++, Timestamp.valueOf(end));
+            preparedStatement.setInt(paramindex++, customerId);
+            preparedStatement.setInt(paramindex++, userId);
 
-
-
-            String get = "Insert Into appointments (Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID )" +
-                    "Values ('" + title + "', '" + description + "', '" + location + "', " + contactId + ", '" + type + "', '" + startUTC + "', '" + endUTC + "', " + customerId + ", " + userId + ")";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(get);
             preparedStatement.executeUpdate();
         } catch (SQLException error) {
             System.out.println(("Error: " + error.getMessage()));
@@ -179,32 +159,32 @@ public class AppointmentDAO {
         try {
             Connection connection = JDBC.getConnection();
 
-            ZoneId localZone = ZoneId.systemDefault();
-            ZoneId utcZone = ZoneId.of("UTC");
-
-            LocalDateTime startUTC = start.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-            LocalDateTime endUTC = end.atZone(localZone).withZoneSameInstant(utcZone).toLocalDateTime();
-
 
             String update = "Update appointments Set " +
-                    "Title = '" + title + "', " +
-                    "Description = '" + description + "', " +
-                    "Location = '" + location + "', " +
-                    "Contact_ID = " + contactId + ", " +
-                    "Type = '" + type + "', " +
-                    "Start = '" + startUTC + "', " +
-                    "End = '" + endUTC + "', " +
-                    "Customer_ID = " + customerId + ", " +
-                    "User_ID = " + userId + " " +
-                    "WHERE Appointment_ID = " + appointmentId;
+                    "title = ?, " +
+                    "Description = ?, " +
+                    "Location = ?, " +
+                    "Contact_ID = ?, " +
+                    "Type = ?, " +
+                    "Start = ?, " +
+                    "End = ?, " +
+                    "Customer_ID =  ?, " +
+                    "User_ID = ? " +
+                    "WHERE Appointment_ID = ? ";
 
-            /*System.out.println("Converting to UTC:");
-            System.out.println("Local start: " + start);
-            System.out.println("UTC start: " + startUTC);
-            System.out.println("Local end: " + end);
-            System.out.println("UTC end: " + endUTC);*/
 
             PreparedStatement preparedStatement = connection.prepareStatement(update);
+            int paramindex = 1;
+            preparedStatement.setString(paramindex++, title);
+            preparedStatement.setString(paramindex++, description);
+            preparedStatement.setString(paramindex++, location);
+            preparedStatement.setInt(paramindex++, contactId);
+            preparedStatement.setString(paramindex++, type);
+            preparedStatement.setTimestamp(paramindex++, Timestamp.valueOf(start));
+            preparedStatement.setTimestamp(paramindex++, Timestamp.valueOf(end));
+            preparedStatement.setInt(paramindex++, customerId);
+            preparedStatement.setInt(paramindex++, userId);
+            preparedStatement.setInt(paramindex++, appointmentId);
             preparedStatement.executeUpdate();
         } catch (SQLException error) {
             System.out.println("Error: " + error.getMessage());

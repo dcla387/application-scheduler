@@ -316,10 +316,10 @@ public class addApptController implements Initializable {
 
         // Convert to UTC before saving
 
-        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
-                .withZoneSameInstant(ZoneId.of("UTC"));
-        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
-                .withZoneSameInstant(ZoneId.of("UTC"));
+//        ZonedDateTime utcStart = startDateTime.atZone(ZoneId.systemDefault())
+//                .withZoneSameInstant(ZoneId.of("UTC"));
+//        ZonedDateTime utcEnd = endDateTime.atZone(ZoneId.systemDefault())
+//                .withZoneSameInstant(ZoneId.of("UTC"));
 
         if (endDateTime.isBefore(startDateTime) || endDateTime.isEqual(startDateTime)) {
 
@@ -340,8 +340,8 @@ public class addApptController implements Initializable {
                 location,
                 contact.getContactId(),
                 type,
-                utcStart.toLocalDateTime(),
-                utcEnd.toLocalDateTime(),
+                startDateTime,
+                endDateTime,
                 customer.getCustomerId(),
                 userID);
 
