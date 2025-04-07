@@ -524,26 +524,56 @@ public class AppointmentDAO {
      * @return True - if the appointment is within business hours, false otherwise
      */
 
+//    public static boolean isInBizHours(LocalDateTime start, LocalDateTime end) {
+//
+//        ZoneId localZone = ZoneId.systemDefault();
+//        ZoneId eastZone = ZoneId.of("America/New_York");
+//
+//        ZonedDateTime startZoned = start.atZone(localZone);
+//        ZonedDateTime startEast = startZoned.withZoneSameInstant(eastZone);
+//        LocalTime startTimeEast = startEast.toLocalTime();
+//
+//        ZonedDateTime endZoned = end.atZone(localZone);
+//        ZonedDateTime endEast = endZoned.withZoneSameInstant(eastZone);
+//        LocalTime endTimeEast = endEast.toLocalTime();
+//
+//        LocalTime bizStart = LocalTime.of(8, 0);
+//        LocalTime bizEnd = LocalTime.of(22, 0);
+//
+//        return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
+//
+//    }
+
     public static boolean isInBizHours(LocalDateTime start, LocalDateTime end) {
-
         ZoneId localZone = ZoneId.systemDefault();
-        ZoneId eastZone = ZoneId.of("America/New_York");
+        ZoneId estZone = ZoneId.of("America/New_York");
 
-        ZonedDateTime startZoned = start.atZone(localZone);
-        ZonedDateTime startEast = startZoned.withZoneSameInstant(eastZone);
-        LocalTime startTimeEast = startEast.toLocalTime();
-
-        ZonedDateTime endZoned = end.atZone(localZone);
-        ZonedDateTime endEast = endZoned.withZoneSameInstant(eastZone);
-        LocalTime endTimeEast = endEast.toLocalTime();
-
-        LocalTime bizStart = LocalTime.of(8, 0);
-        LocalTime bizEnd = LocalTime.of(22, 0);
+        ZonedDateTime startZoned = start.atZone(localZone).withZoneSameInstant(estZone);
+        ZonedDateTime endZoned = end.atZone(localZone).withZoneSameInstant(estZone);
 
 
-        return !startTimeEast.isBefore(bizStart) && !endTimeEast.isAfter(bizEnd);
+        ZonedDateTime bizStart = startZoned.toLocalDate().atTime(8, 0).atZone(estZone);
+        ZonedDateTime bizEnd = startZoned.toLocalDate().atTime(22, 0).atZone(estZone);
 
+//        System.out.println("---- BUSINESS HOURS VALIDATION ----");
+//        System.out.println("Start ET:     " + startZoned);
+//        System.out.println("End ET:       " + endZoned);
+//        System.out.println("Biz Start ET: " + bizStart);
+//        System.out.println("Biz End ET:   " + bizEnd);
+
+
+        boolean isSameDay = endZoned.toLocalDate().equals(startZoned.toLocalDate());
+
+        boolean result = !startZoned.isBefore(bizStart)
+                && !endZoned.isAfter(bizEnd)
+                && isSameDay;
+
+
+        return result;
     }
+
+
+
 
     /**
      * Checks if an appointment overlaps with an existing appointment for the same customer.
